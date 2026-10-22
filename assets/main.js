@@ -280,6 +280,77 @@
     });
   }
 
+  /* ---------- Motion: progress bar, parallax, timeline, floating buttons ---------- */
+  var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function initScrollEffects() {
+    var bar = $("#progress"), hero = $(".hero"), heroBg = $(".hero-bg"), totop = $("#totop"), mbar = $("#mbar");
+    var timeline = $(".timeline"), steps = timeline ? $$("li", timeline) : [];
+    var ticking = false;
+
+    function update() {
+      ticking = false;
+      var y = window.scrollY, vh = window.innerHeight;
+      var max = document.documentElement.scrollHeight - vh;
+      bar.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
+
+      var pastHero = y > hero.offsetHeight * 0.6;
+      totop.classList.toggle("show", pastHero);
+      mbar.classList.toggle("show", pastHero);
+
+      if (!calm && y < hero.offsetHeight) heroBg.style.setProperty("--py", (y * 0.25).toFixed(1) + "px");
+
+      if (timeline) {
+        // Fill the line up to the middle of the screen and light up the steps it has passed
+        var r = timeline.getBoundingClientRect(), mid = vh * 0.55;
+        var p = Math.min(1, Math.max(0, (mid - r.top) / r.height));
+        timeline.style.setProperty("--p", p.toFixed(3));
+        steps.forEach(function (li) { li.classList.toggle("on", li.getBoundingClientRect().top < mid); });
+      }
+    }
+    function onScroll() { if (!ticking) { ticking = true; window.requestAnimationFrame(update); } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+  }
+
+  /* ---------- Stats count up when they come into view ---------- */
+  function initCounters() {
+    if (calm || !("IntersectionObserver" in window)) return;
+    function run(node) {
+      var m = node.textContent.trim().match(/^([\d.,]+)(.*)$/);
+      if (!m) return;
+      var raw = m[1], suffix = m[2], target = parseFloat(raw.replace(/,/g, ""));
+      var decimals = (raw.split(".")[1] || "").length, commas = raw.indexOf(",") > -1;
+      var start = null, dur = 1600;
+      function frame(t) {
+        if (!start) start = t;
+        var k = Math.min(1, (t - start) / dur), eased = 1 - Math.pow(1 - k, 3);
+        var v = target * eased;
+        node.textContent = (commas ? Math.round(v).toLocaleString("en-IN") : v.toFixed(decimals)) + suffix;
+        if (k < 1) window.requestAnimationFrame(frame); else node.textContent = raw + suffix;
+      }
+      window.requestAnimationFrame(frame);
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    $$(".stats strong").forEach(function (n) { io.observe(n); });
+  }
+
+  /* ---------- Cursor spotlight on cards ---------- */
+  function initSpotlight() {
+    if (!window.matchMedia || !window.matchMedia("(hover: hover)").matches) return;
+    $$(".pillar, .quote-card, .ch, .headlines, .facts div").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+      card.addEventListener("pointerleave", function () { card.style.removeProperty("--mx"); card.style.removeProperty("--my"); });
+    });
+  }
+
   /* ---------- Scroll reveal ---------- */
   function initReveal() {
     var items = $$(".reveal");
@@ -336,6 +407,9 @@
   safe(initRails);
   safe(initNav);
   safe(initReveal);
+  safe(initScrollEffects);
+  safe(initCounters);
+  safe(initSpotlight);
   safe(initLightbox);
   safe(initContact);
   $("#year").textContent = new Date().getFullYear();

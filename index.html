@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>My Village Show | Telugu Village Entertainment Since 2012</title>
   <meta name="description" content="My Village Show is the first village-based Telugu YouTube channel. Founded in 2012 in Lambadipally, Telangana, it has grown into a family of channels with over a billion views.">
   <meta property="og:title" content="My Village Show">
@@ -23,6 +23,7 @@
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><span id="progress"></span></div>
 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
@@ -35,6 +36,7 @@
       <a href="#team">Team</a>
       <a href="#hrdc">HRDC</a>
       <a href="#media">Press</a>
+      <a href="#contact" class="btn btn-primary btn-lg links-cta">Partner with us</a>
     </nav>
     <a class="btn btn-primary nav-cta" href="#contact">Partner with us</a>
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
@@ -53,7 +55,7 @@
           <img src="assets/img/logo.png" alt="My Village Show">
           <p class="eyebrow"><span class="dot"></span> Est. 2012 · Lambadipally, Telangana</p>
         </div>
-        <h1 class="reveal">From our village<br>to <em>the world.</em></h1>
+        <h1 class="hero-title"><span class="line"><span>From our village</span></span><span class="line"><span>to <em>the world.</em></span></span></h1>
         <p class="te reveal" lang="te">మై విలేజ్ షో</p>
         <p class="lead reveal">The first village-based Telugu YouTube channel — a family of five channels, over a billion views, and a whole village behind the camera.</p>
         <div class="cta reveal">
@@ -180,7 +182,7 @@
         </div>
       </div>
       <div class="pillars">
-        <article class="pillar reveal">
+        <article class="pillar tone-watch reveal">
           <span class="pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h11a2 2 0 0 1 2 2v1.5l3.4-2.3A1 1 0 0 1 22 8v8a1 1 0 0 1-1.6.8L17 14.5V16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/></svg></span>
           <h3>Original Telugu shows</h3>
           <p>Comedy sketches, mini-series and festival specials — written, shot and edited in our village.</p>
@@ -190,12 +192,12 @@
           <h3>A network of channels</h3>
           <p>Five YouTube channels covering the show, behind-the-scenes vlogs, music, compilations and live streams.</p>
         </article>
-        <article class="pillar reveal">
+        <article class="pillar tone-press reveal">
           <span class="pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.2l7.1-.6z"/></svg></span>
           <h3>Brand partnerships</h3>
           <p>Authentic integrations and sponsorships that reach millions of Telugu viewers in the voice they trust.</p>
         </article>
-        <article class="pillar reveal">
+        <article class="pillar tone-community reveal">
           <span class="pillar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.9V17h2V9zM5 13.2v4L12 21l7-3.8v-4L12 17z"/></svg></span>
           <h3>Skills &amp; training</h3>
           <p>Our HRDC helps village youth learn content creation, filmmaking, editing and technology.</p>
@@ -205,7 +207,7 @@
   </section>
 
   <!-- VIDEOS -->
-  <section id="videos" class="section alt">
+  <section id="videos" class="section alt tone-watch">
     <div class="wrap">
       <div class="head reveal">
         <div>
@@ -258,7 +260,7 @@
   </section>
 
   <!-- CHANNELS -->
-  <section id="channels" class="section">
+  <section id="channels" class="section tone-watch">
     <div class="wrap">
       <div class="head reveal">
         <div>
@@ -312,7 +314,7 @@
   </section>
 
   <!-- HRDC -->
-  <section id="hrdc" class="section hrdc">
+  <section id="hrdc" class="section hrdc tone-community">
     <div class="wrap hrdc-inner reveal">
       <p class="kicker">HRDC</p>
       <h2>Human Resource Development Center</h2>
@@ -325,7 +327,7 @@
   </section>
 
   <!-- MEDIA -->
-  <section id="media" class="section">
+  <section id="media" class="section tone-press">
     <div class="wrap">
       <div class="head reveal">
         <div>
@@ -460,6 +462,14 @@
     <p class="muted">myvillageshow.com</p>
   </div>
 </footer>
+
+<nav class="mbar" id="mbar" aria-label="Quick actions">
+  <a href="#videos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Watch</a>
+  <a href="https://www.youtube.com/@MyVillageShow?sub_confirmation=1" target="_blank" rel="noopener" class="mbar-yt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>Subscribe</a>
+  <a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>Partner</a>
+</nav>
+
+<a class="totop" id="totop" href="#top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l7 7-1.4 1.4L13 8.8V19h-2V8.8l-4.6 4.6L5 12z"/></svg></a>
 
 <div class="lightbox" id="lightbox" hidden>
   <button class="lb-close" aria-label="Close">×</button>
