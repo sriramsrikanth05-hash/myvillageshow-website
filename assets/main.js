@@ -58,6 +58,9 @@
     if (!m) return 0;
     return parseFloat(m[1]) * ({ K: 1e3, M: 1e6, B: 1e9 }[(m[2] || "").toUpperCase()] || 1);
   }
+  function formatBig(n) {
+    return n >= 1e9 ? (Math.floor(n / 1e8) / 10) + "B" : formatCount(n);
+  }
   function formatCount(n) {
     if (n >= 1e6) return (Math.floor(n / 1e5) / 10) + "M";
     if (n >= 1e3) return Math.floor(n / 1e3) + "K";
@@ -88,6 +91,13 @@
     if (subs) set("#stat-subs", formatCount(subs) + "+");
     if (vids) set("#stat-videos", (Math.floor(vids / 100) * 100).toLocaleString("en-IN") + "+");
     set("#stat-channels", ch.length);
+    // Views, from each channel's YouTube About page
+    var views = ch.reduce(function (a, c) { return a + (c.views || 0); }, 0);
+    if (ch[0] && ch[0].views) set("#stat-views", formatBig(ch[0].views) + "+");
+    if (views) set("#fact-views", formatBig(views) + "+");
+    if (subs) set("#fact-subs", formatCount(subs) + "+");
+    var words = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+    set("#about-channels", words[ch.length] || ch.length);
   }
 
   /* ---------- Story film (YouTube Originals Creator Spotlight) ---------- */
@@ -261,14 +271,13 @@
         el("span", {}, [el("b", { text: cleanTitle(p.title) }), el("small", { text: meta(p) })])
       ]);
       btn.dataset.id = p.id;
-      btn.addEventListener("click", function () { playAndShow(p, isNew(p) ? "New episode" : "Podcast"); });
+      btn.addEventListener("click", function () { playAndShow(p, p === latest[0] ? (isNew(p) ? "New episode" : "Latest episode") : "Podcast"); });
       latestRail.appendChild(btn);
     });
 
     $("#pod-play").addEventListener("click", play);
-    // Feature the newest episode if it is recent, otherwise the most played one
-    if (isNew(latest[0])) load(latest[0], "New episode", false);
-    else load(popular[0], "#1 most played", false);
+    // Like "Latest from the village": the newest episode is always featured
+    load(latest[0], isNew(latest[0]) ? "New episode" : "Latest episode", false);
     $("#podcast").hidden = false;
   }
 
