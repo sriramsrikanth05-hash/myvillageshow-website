@@ -1,0 +1,61 @@
+# Publishes the site to GitHub Pages.
+# Runs on every push, every 3 hours (to pull fresh YouTube data), and on demand from the Actions tab.
+name: Update YouTube data & deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # If YouTube can't be reached the script keeps the existing data, so a failure here never breaks the site.
+      - name: Refresh YouTube data
+        run: python3 tools/update_youtube.py || echo "YouTube refresh failed; keeping existing data"
+
+      - name: Save new data to the repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/data/youtube.js assets/img/channels
+          if git diff --cached --quiet; then
+            echo "No YouTube changes"
+          else
+            git commit -m "Update YouTube data"
+            git push
+          fi
+
+      # Publish only the website files (not tools/, README, etc.)
+      - name: Build site folder
+        run: |
+          mkdir _site
+          cp -R index.html assets CNAME _site/
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
