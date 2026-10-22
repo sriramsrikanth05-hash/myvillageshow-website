@@ -71,8 +71,16 @@ def channel_info(handle):
         "url": f"https://www.youtube.com/{handle}",
         "subscribers": subs,
         "videos": videos,
+        "views": 0,
         "avatar": "",
     }
+    # Total channel views are only on the About page
+    try:
+        about = fetch(f"https://www.youtube.com/{handle}/about").read().decode()
+        m = re.search(r'"viewCountText":"([\d,]+) views"', about)
+        info["views"] = int(m.group(1).replace(",", "")) if m else 0
+    except Exception as e:
+        print(f"  views failed for {handle}: {e}", file=sys.stderr)
     if avatar:
         dest = AVATARS / f"{handle.strip('@').lower()}.jpg"
         try:

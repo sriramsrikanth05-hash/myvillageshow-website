@@ -1,5 +1,5 @@
 window.MVS_YT = {
-  "updated": "2026-10-22T20:31:22+00:00",
+  "updated": "2026-10-22T20:42:02+00:00",
   "channels": [
     {
       "id": "UCnprfRlJB7WE6zAEaOAfVYA",
@@ -8,6 +8,7 @@ window.MVS_YT = {
       "url": "https://www.youtube.com/@MyVillageShow",
       "subscribers": "3.15M",
       "videos": "562",
+      "views": 1150497520,
       "avatar": "assets/img/channels/myvillageshow.jpg"
     },
     {
@@ -17,6 +18,7 @@ window.MVS_YT = {
       "url": "https://www.youtube.com/@MyVillageShowVlogs",
       "subscribers": "457K",
       "videos": "299",
+      "views": 78062584,
       "avatar": "assets/img/channels/myvillageshowvlogs.jpg"
     },
     {
@@ -26,6 +28,7 @@ window.MVS_YT = {
       "url": "https://www.youtube.com/@kallivalli450",
       "subscribers": "539K",
       "videos": "217",
+      "views": 183930769,
       "avatar": "assets/img/channels/kallivalli450.jpg"
     },
     {
@@ -35,6 +38,7 @@ window.MVS_YT = {
       "url": "https://www.youtube.com/@VillageShow-Mix",
       "subscribers": "1.33M",
       "videos": "872",
+      "views": 537092632,
       "avatar": "assets/img/channels/villageshow-mix.jpg"
     },
     {
@@ -44,6 +48,7 @@ window.MVS_YT = {
       "url": "https://www.youtube.com/@myvillageshowstream",
       "subscribers": "411K",
       "videos": "306",
+      "views": 302159826,
       "avatar": "assets/img/channels/myvillageshowstream.jpg"
     }
   ],
@@ -52,21 +57,21 @@ window.MVS_YT = {
       "id": "4WD6ZqKE85w",
       "title": "Love Story | Part 02 | The Other Side | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-22T11:30:19+00:00",
-      "views": 88526,
+      "views": 88884,
       "short": false
     },
     {
       "id": "ZyUNfqY5siE",
       "title": "Dasara Paga | దసరా పగ | My Village Show | Gangavva | Chandu | Thirumal | Bathukamma | Dussehra",
       "published": "2026-10-15T12:11:02+00:00",
-      "views": 420708,
+      "views": 420733,
       "short": false
     },
     {
       "id": "4hPYiULUfzo",
       "title": "Love Story | Part 01| One Side | Village Love Story | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-07T12:00:26+00:00",
-      "views": 427872,
+      "views": 427888,
       "short": false
     },
     {
@@ -89,7 +94,7 @@ window.MVS_YT = {
       "id": "I4yek3WXtuU",
       "title": "బాగా ఆకలి గా ఉన్నది ... పొట్టు పొట్టు తిన్నాం ... #myvillageshow #food #gangavvacomedy",
       "published": "2026-10-16T02:30:07+00:00",
-      "views": 576899,
+      "views": 576945,
       "short": true
     },
     {
@@ -110,7 +115,7 @@ window.MVS_YT = {
       "id": "eAVNEDtGfko",
       "title": "దెయ్యాన్ని చూసి భయపడ్డ చందు ! | chandu | myvillageshow | gangavva |  #myvillageshow #comedy",
       "published": "2026-10-06T00:30:34+00:00",
-      "views": 19922,
+      "views": 19963,
       "short": true
     },
     {
@@ -154,7 +159,7 @@ window.MVS_YT = {
       "id": "lnKCLgibhm8",
       "title": "Gangavva interview after biggboss season 8 |  Telugu Podcast | sriram srikanth",
       "seconds": 1810,
-      "views": 749581,
+      "views": 749580,
       "published": "2024-11-16T11:25:29+00:00"
     },
     {
@@ -183,20 +188,20 @@ window.MVS_YT = {
       "title": "SPECIAL TALK TO PILLI TIRUPATI | HIS LIFE JOURNEY | MY VLLAGE SHOW PODCAST",
       "seconds": 4234,
       "views": 238408,
-      "published": "2026-04-25T20:31:22+00:00"
+      "published": "2026-04-25T20:42:02+00:00"
     },
     {
       "id": "9HyszJ9_CW8",
       "title": "Shiva tho Chit Chat | Q and A | My Village Show vlogs",
       "published": "2022-01-29T09:18:55+00:00",
-      "views": 230868,
+      "views": 230846,
       "seconds": 0
     },
     {
       "id": "BXPlZoXFq4E",
       "title": "Bigg Boss 8 గురించి గంగవ్వ కి ఎం తెలుసు ? | Gangavva Interview before Bigg boss",
       "published": "2024-10-09T05:39:04+00:00",
-      "views": 182162,
+      "views": 182163,
       "seconds": 0
     },
     {
@@ -260,7 +265,7 @@ window.MVS_YT = {
       "title": "Oracle Layoffs: What Now for Indian Tech? | BHASKAR JOGI | GO ONLINE TRAININGS | PODCAST",
       "seconds": 3981,
       "views": 10305,
-      "published": "2026-04-25T20:31:22+00:00"
+      "published": "2026-04-25T20:42:02+00:00"
     }
   ]
 };
