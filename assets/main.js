@@ -234,7 +234,7 @@
     function isNew(p) { return (Date.now() - new Date(p.published)) / 864e5 < NEW_DAYS; }
 
     function load(p, badge, autoplay) {
-      $$(".pod-item, #pod-latest .pl-item, #pod-celeb .pl-item").forEach(function (b) { b.classList.toggle("active", b.dataset.id === p.id); });
+      $$(".pod-item, #pod-latest .pl-item").forEach(function (b) { b.classList.toggle("active", b.dataset.id === p.id); });
       player.classList.remove("playing");
       $$("iframe", player).forEach(function (f) { f.remove(); });
       thumb($("#pod-thumb"), p.id);
@@ -281,24 +281,72 @@
       latestRail.appendChild(btn);
     });
 
-    // Celebrity specials from KalliValli: most viewed first, played in the same player
-    (data.celebrity || []).forEach(function (p) {
-      var inner = [thumb(el("img", { alt: "", loading: "lazy" }), p.id, ["mqdefault"])];
-      if (p.seconds) inner.push(el("span", { class: "pod-len", text: duration(p.seconds) }));
-      var btn = el("button", { class: "pl-item", type: "button" }, [
-        el("span", { class: "pl-thumb" }, inner),
-        el("span", {}, [el("b", { text: cleanTitle(p.title) }), el("small", { text: [p.channel, shortViews(p.views) + " views", p.seconds ? duration(p.seconds) : ""].filter(Boolean).join(" · ") })])
-      ]);
-      btn.dataset.id = p.id;
-      btn.addEventListener("click", function () { playAndShow(p, "Celebrity special"); });
-      $("#pod-celeb").appendChild(btn);
-    });
-    if ((data.celebrity || []).length) $("#celeb-wrap").hidden = false;
-
     $("#pod-play").addEventListener("click", play);
     // Like "Latest from the village": the newest episode is always featured
     load(latest[0], isNew(latest[0]) ? "New episode" : "Latest episode", false);
     $("#podcast").hidden = false;
+  }
+
+  /* ---------- Talk with Celebrity ---------- */
+  function renderCelebrity() {
+    var talks = (data.celebrity || []).filter(function (t) { return t.id; });
+    if (!talks.length) return;
+    var player = $("#cel-player");
+    talks.sort(function (a, b) { return b.views - a.views; });
+
+    function label(t) { return t.kind === "official" ? "Official" : ""; }
+    function meta(t) {
+      return [label(t), t.channel, t.views ? shortViews(t.views) + " views" : "", t.seconds ? duration(t.seconds) : ""].filter(Boolean).join(" · ");
+    }
+    function load(t, badge, autoplay) {
+      $$("#cel-top .pod-item, #cel-all .pl-item").forEach(function (b) { b.classList.toggle("active", b.dataset.id === t.id); });
+      player.classList.remove("playing");
+      $$("iframe", player).forEach(function (f) { f.remove(); });
+      thumb($("#cel-thumb"), t.id);
+      $("#cel-title").textContent = cleanTitle(t.title);
+      $("#cel-meta").textContent = meta(t);
+      $("#cel-badge").textContent = badge;
+      player.dataset.id = t.id;
+      player.dataset.title = t.title;
+      if (autoplay) play();
+    }
+    function play() {
+      if (player.classList.contains("playing")) return;
+      player.appendChild(embed(player.dataset.id, player.dataset.title));
+      player.classList.add("playing");
+    }
+    function playAndShow(t, badge) {
+      load(t, badge, true);
+      player.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    talks.slice(0, 5).forEach(function (t, i) {
+      var btn = el("button", { class: "pod-item", type: "button" }, [
+        el("span", { class: "pod-rank", text: String(i + 1), "aria-hidden": "true" }),
+        thumb(el("img", { alt: "", loading: "lazy" }), t.id, ["mqdefault"]),
+        el("span", {}, [el("b", { text: cleanTitle(t.title) }), el("small", { text: [t.channel, shortViews(t.views) + " views"].join(" · ") })])
+      ]);
+      btn.dataset.id = t.id;
+      btn.addEventListener("click", function () { playAndShow(t, "#" + (i + 1) + " most watched"); });
+      $("#cel-top").appendChild(el("li", {}, [btn]));
+    });
+
+    talks.forEach(function (t) {
+      var inner = [thumb(el("img", { alt: "", loading: "lazy" }), t.id, ["mqdefault"])];
+      if (t.seconds) inner.push(el("span", { class: "pod-len", text: duration(t.seconds) }));
+      if (label(t)) inner.push(el("span", { class: "cel-kind", text: label(t) }));
+      var btn = el("button", { class: "pl-item", type: "button" }, [
+        el("span", { class: "pl-thumb" }, inner),
+        el("span", {}, [el("b", { text: cleanTitle(t.title) }), el("small", { text: [t.channel, t.views ? shortViews(t.views) + " views" : ""].filter(Boolean).join(" · ") })])
+      ]);
+      btn.dataset.id = t.id;
+      btn.addEventListener("click", function () { playAndShow(t, label(t) ? "Official" : "Celebrity talk"); });
+      $("#cel-all").appendChild(btn);
+    });
+
+    $("#cel-play").addEventListener("click", play);
+    load(talks[0], "#1 most watched", false);
+    $("#celebrity").hidden = false;
   }
 
   /* ---------- Channels ---------- */
@@ -508,6 +556,7 @@
   safe(renderVideos);
   safe(renderShorts);
   safe(renderPodcasts);
+  safe(renderCelebrity);
   safe(renderChannels);
   safe(initStory);
   safe(initRails);
