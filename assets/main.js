@@ -365,34 +365,13 @@
     });
   }
 
-  /* ---------- Motion: progress bar, parallax, story road, floating buttons ---------- */
+  /* ---------- Motion: progress bar, parallax, timeline, floating buttons ---------- */
   var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function initScrollEffects() {
     var bar = $("#progress"), hero = $(".hero"), heroBg = $(".hero-bg"), totop = $("#totop"), mbar = $("#mbar");
-    var road = $("#road"), steps = road ? $$(".road-step", road) : [], fill = road && $(".road-fill", road), roadLen = 0;
+    var timeline = $(".timeline"), steps = timeline ? $$("li", timeline) : [];
     var ticking = false;
-
-    // Draw the winding road as S-curves through the centre of every year marker
-    function drawRoad() {
-      if (!road) return;
-      var box = road.getBoundingClientRect();
-      var pts = steps.map(function (li) {
-        var r = $(".road-year", li).getBoundingClientRect();
-        return [r.left + r.width / 2 - box.left, r.top + r.height / 2 - box.top];
-      });
-      if (!pts.length) return;
-      var first = pts[0], last = pts[pts.length - 1];
-      var d = "M" + first[0] + " " + (first[1] - 70) + " L" + first[0] + " " + first[1];
-      for (var i = 1; i < pts.length; i++) {
-        var a = pts[i - 1], b = pts[i], my = (a[1] + b[1]) / 2;
-        d += " C" + a[0] + " " + my + " " + b[0] + " " + my + " " + b[0] + " " + b[1];
-      }
-      d += " L" + last[0] + " " + (last[1] + 70);
-      $$("path", road).forEach(function (p) { p.setAttribute("d", d); });
-      roadLen = fill.getTotalLength();
-      fill.style.strokeDasharray = roadLen;
-    }
 
     function update() {
       ticking = false;
@@ -406,22 +385,17 @@
 
       if (!calm && y < hero.offsetHeight) heroBg.style.setProperty("--py", (y * 0.25).toFixed(1) + "px");
 
-      if (road && roadLen) {
-        // Fill the road up to the middle of the screen and light up the years it has passed
-        var r = road.getBoundingClientRect(), mid = vh * 0.55;
-        var p = calm ? 1 : Math.min(1, Math.max(0, (mid - r.top) / r.height));
-        fill.style.strokeDashoffset = roadLen * (1 - p);
-        steps.forEach(function (li) { li.classList.toggle("on", $(".road-year", li).getBoundingClientRect().top < mid); });
+      if (timeline) {
+        // Fill the line up to the middle of the screen and light up the steps it has passed
+        var r = timeline.getBoundingClientRect(), mid = vh * 0.55;
+        var p = Math.min(1, Math.max(0, (mid - r.top) / r.height));
+        timeline.style.setProperty("--p", p.toFixed(3));
+        steps.forEach(function (li) { li.classList.toggle("on", li.getBoundingClientRect().top < mid); });
       }
     }
     function onScroll() { if (!ticking) { ticking = true; window.requestAnimationFrame(update); } }
-    function onResize() { drawRoad(); onScroll(); }
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
-    // Text reflows once web fonts and images arrive, which moves the markers
-    window.addEventListener("load", onResize);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(onResize);
-    drawRoad();
+    window.addEventListener("resize", onScroll);
     update();
   }
 
