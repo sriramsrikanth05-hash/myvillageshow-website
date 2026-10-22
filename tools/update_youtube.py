@@ -5,7 +5,7 @@ Run from anywhere:  python3 tools/update_youtube.py
 Writes assets/data/youtube.js (loaded by index.html as window.MVS_YT) and caches channel avatars in assets/img/channels/.
 If YouTube can't be reached, the existing JSON is kept untouched.
 """
-import json, pathlib, re, sys, urllib.parse, urllib.request, xml.etree.ElementTree as ET
+import json, pathlib, re, sys, time, urllib.error, urllib.parse, urllib.request, xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -33,9 +33,17 @@ UA = {"User-Agent": "Mozilla/5.0 (Macintosh) AppleWebKit/537.36 Chrome/120 Safar
       "Accept-Language": "en-US,en;q=0.9"}
 
 
-def fetch(url, method="GET"):
-    req = urllib.request.Request(url, headers=UA, method=method)
-    return urllib.request.urlopen(req, timeout=20)
+def fetch(url, method="GET", attempts=4):
+    # YouTube occasionally answers 404/429/5xx for a few seconds (the RSS feed especially), so retry with backoff.
+    for i in range(attempts):
+        try:
+            req = urllib.request.Request(url, headers=UA, method=method)
+            return urllib.request.urlopen(req, timeout=20)
+        except (urllib.error.HTTPError, urllib.error.URLError) as e:
+            code = getattr(e, "code", None)
+            if i == attempts - 1 or (code is not None and code not in (404, 429) and code < 500):
+                raise
+            time.sleep(3 * (i + 1))
 
 
 def initial_data(html):
