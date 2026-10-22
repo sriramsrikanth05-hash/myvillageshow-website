@@ -1,5 +1,5 @@
 window.MVS_YT = {
-  "updated": "2026-10-22T19:28:36+00:00",
+  "updated": "2026-10-22T20:03:55+00:00",
   "channels": [
     {
       "id": "UCnprfRlJB7WE6zAEaOAfVYA",
@@ -52,21 +52,21 @@ window.MVS_YT = {
       "id": "4WD6ZqKE85w",
       "title": "Love Story | Part 02 | The Other Side | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-22T11:30:19+00:00",
-      "views": 81045,
+      "views": 86031,
       "short": false
     },
     {
       "id": "ZyUNfqY5siE",
       "title": "Dasara Paga | దసరా పగ | My Village Show | Gangavva | Chandu | Thirumal | Bathukamma | Dussehra",
       "published": "2026-10-15T12:11:02+00:00",
-      "views": 420101,
+      "views": 420419,
       "short": false
     },
     {
       "id": "4hPYiULUfzo",
       "title": "Love Story | Part 01| One Side | Village Love Story | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-07T12:00:26+00:00",
-      "views": 427438,
+      "views": 427684,
       "short": false
     },
     {
@@ -89,7 +89,7 @@ window.MVS_YT = {
       "id": "I4yek3WXtuU",
       "title": "బాగా ఆకలి గా ఉన్నది ... పొట్టు పొట్టు తిన్నాం ... #myvillageshow #food #gangavvacomedy",
       "published": "2026-10-16T02:30:07+00:00",
-      "views": 575631,
+      "views": 576493,
       "short": true
     },
     {
@@ -110,14 +110,14 @@ window.MVS_YT = {
       "id": "eAVNEDtGfko",
       "title": "దెయ్యాన్ని చూసి భయపడ్డ చందు ! | chandu | myvillageshow | gangavva |  #myvillageshow #comedy",
       "published": "2026-10-06T00:30:34+00:00",
-      "views": 19932,
+      "views": 19929,
       "short": true
     },
     {
       "id": "WRaD8vPcC-E",
       "title": "ఆగం చేసిన మంత్రగాడు  #myvillageshow #chandu  #comedyvideo",
       "published": "2026-10-05T08:22:07+00:00",
-      "views": 28774,
+      "views": 28805,
       "short": true
     },
     {
@@ -131,21 +131,21 @@ window.MVS_YT = {
       "id": "4jyIvH-4IAw",
       "title": "గంగవ్వ దెయ్యమా ?.. కాదా?.. #shorts #chandu #gangavva #raju",
       "published": "2026-10-02T05:35:42+00:00",
-      "views": 89362,
+      "views": 89392,
       "short": true
     },
     {
       "id": "2TAIb2w_2B0",
       "title": "పోలీసుల అడ్డా,బలైన బిడ్డ  #comedy #myvillageshow",
       "published": "2026-09-29T05:08:57+00:00",
-      "views": 354109,
+      "views": 354122,
       "short": true
     },
     {
       "id": "Pd-DAi25HFU",
       "title": "చందు చలాకి గా బలే తప్పించుకున్నాడు | chandu | myvillageshow #ganesh #ganeshchaturthi  #comedy",
       "published": "2026-09-23T06:30:33+00:00",
-      "views": 58799,
+      "views": 58816,
       "short": true
     }
   ]
