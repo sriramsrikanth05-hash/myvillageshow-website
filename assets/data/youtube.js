@@ -1,5 +1,5 @@
 window.MVS_YT = {
-  "updated": "2026-10-22T20:05:28+00:00",
+  "updated": "2026-10-22T20:08:33+00:00",
   "channels": [
     {
       "id": "UCnprfRlJB7WE6zAEaOAfVYA",
