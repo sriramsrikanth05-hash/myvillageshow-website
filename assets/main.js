@@ -289,7 +289,9 @@
 
   /* ---------- Talk with Celebrity ---------- */
   function renderCelebrity() {
-    var talks = (data.celebrity || []).filter(function (t) { return t.id; });
+    // A video never appears in both sections: podcast episodes stay in Podcast only
+    var podIds = (data.podcasts || []).map(function (p) { return p.id; });
+    var talks = (data.celebrity || []).filter(function (t) { return t.id && podIds.indexOf(t.id) < 0; });
     if (!talks.length) return;
     var player = $("#cel-player");
     talks.sort(function (a, b) { return b.views - a.views; });
