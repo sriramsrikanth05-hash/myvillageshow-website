@@ -32,6 +32,7 @@
       <a href="#about">About</a>
       <a href="#story">Story</a>
       <a href="#videos">Shows</a>
+      <a href="#podcast">Podcast</a>
       <a href="#channels">Channels</a>
       <a href="#team">Team</a>
       <a href="#hrdc">HRDC</a>
@@ -259,6 +260,46 @@
     </div>
   </section>
 
+  <!-- PODCAST (filled from assets/data/youtube.js; stays hidden if there are no episodes) -->
+  <section id="podcast" class="section tone-podcast" hidden>
+    <div class="wrap">
+      <div class="head reveal">
+        <div>
+          <p class="kicker">Podcast</p>
+          <h2>My Village Show Podcast</h2>
+          <p class="muted head-sub">Long conversations from the village with the cast, farmers, doctors, founders and creators. New episodes appear here automatically.</p>
+        </div>
+        <a href="https://www.youtube.com/@MyVillageShowVlogs/podcasts" target="_blank" rel="noopener" class="link-arrow">All episodes on YouTube →</a>
+      </div>
+
+      <div class="pod-feature reveal">
+        <div class="pod-player" id="pod-player">
+          <img id="pod-thumb" src="assets/img/village.jpg" alt="">
+          <div class="pod-cap">
+            <span class="pod-badge" id="pod-badge">Most played</span>
+            <b id="pod-title">My Village Show Podcast</b>
+            <small id="pod-meta"></small>
+            <button class="btn btn-primary" id="pod-play" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Play episode
+            </button>
+          </div>
+        </div>
+        <div class="pod-top">
+          <h3>Most played</h3>
+          <ol id="pod-top"></ol>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-head">
+          <h3>Latest episodes</h3>
+          <div class="rail-nav"><button type="button" class="rail-btn" data-dir="-1" aria-label="Scroll left">‹</button><button type="button" class="rail-btn" data-dir="1" aria-label="Scroll right">›</button></div>
+        </div>
+        <div class="rail" id="pod-latest"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- CHANNELS -->
   <section id="channels" class="section tone-watch">
     <div class="wrap">
@@ -446,6 +487,7 @@
     <nav class="footer-col" aria-label="Watch">
       <h4>Watch</h4>
       <a href="#videos">Latest shows</a>
+      <a href="#podcast">Podcast</a>
       <a href="#channels">Our channels</a>
       <a href="https://www.youtube.com/@MyVillageShow" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.instagram.com/myvillageshow/" target="_blank" rel="noopener">Instagram</a>

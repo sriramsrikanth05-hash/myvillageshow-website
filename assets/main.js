@@ -70,8 +70,9 @@
     if (days < 1) return "Today";
     if (days === 1) return "Yesterday";
     if (days < 30) return days + " days ago";
-    if (days < 365) return Math.floor(days / 30) + " months ago";
-    return Math.floor(days / 365) + " years ago";
+    var months = Math.floor(days / 30), years = Math.floor(days / 365);
+    if (days < 365) return months === 1 ? "1 month ago" : months + " months ago";
+    return years === 1 ? "1 year ago" : years + " years ago";
   }
   function cleanTitle(t) {
     // Drop hashtags and trailing "| My Village Show ..." credits so titles fit cards.
@@ -194,6 +195,81 @@
       wrap.appendChild(card);
     });
     $("#shorts-wrap").hidden = false;
+  }
+
+  /* ---------- Podcast ---------- */
+  // "2h 38m" / "58 min"
+  function duration(sec) {
+    var m = Math.round((sec || 0) / 60);
+    return m >= 60 ? Math.floor(m / 60) + "h " + (m % 60) + "m" : m + " min";
+  }
+
+  function renderPodcasts() {
+    var eps = (data.podcasts || []).filter(function (p) { return p.id; });
+    if (!eps.length) return;
+    var player = $("#pod-player"), top = $("#pod-top"), latestRail = $("#pod-latest");
+    var popular = eps.slice().sort(function (a, b) { return b.views - a.views; });
+    var latest = eps.slice().sort(function (a, b) { return new Date(b.published) - new Date(a.published); });
+    var NEW_DAYS = 45;
+
+    function meta(p) {
+      return [timeAgo(p.published), p.views ? shortViews(p.views) + " views" : "", p.seconds ? duration(p.seconds) : ""].filter(Boolean).join(" · ");
+    }
+    function isNew(p) { return (Date.now() - new Date(p.published)) / 864e5 < NEW_DAYS; }
+
+    function load(p, badge, autoplay) {
+      $$(".pod-item, #pod-latest .pl-item").forEach(function (b) { b.classList.toggle("active", b.dataset.id === p.id); });
+      player.classList.remove("playing");
+      $$("iframe", player).forEach(function (f) { f.remove(); });
+      thumb($("#pod-thumb"), p.id);
+      $("#pod-title").textContent = cleanTitle(p.title);
+      $("#pod-meta").textContent = meta(p);
+      $("#pod-badge").textContent = badge;
+      player.dataset.id = p.id;
+      player.dataset.title = p.title;
+      if (autoplay) play();
+    }
+    function play() {
+      if (player.classList.contains("playing")) return;
+      player.appendChild(embed(player.dataset.id, player.dataset.title));
+      player.classList.add("playing");
+    }
+    function playAndShow(p, badge) {
+      load(p, badge, true);
+      player.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    // Most played: top 5 by views
+    popular.slice(0, 5).forEach(function (p, i) {
+      var btn = el("button", { class: "pod-item", type: "button" }, [
+        el("span", { class: "pod-rank", text: String(i + 1), "aria-hidden": "true" }),
+        thumb(el("img", { alt: "", loading: "lazy" }), p.id, ["mqdefault"]),
+        el("span", {}, [el("b", { text: cleanTitle(p.title) }), el("small", { text: shortViews(p.views) + " views · " + duration(p.seconds) })])
+      ]);
+      btn.dataset.id = p.id;
+      btn.addEventListener("click", function () { playAndShow(p, "#" + (i + 1) + " most played"); });
+      top.appendChild(el("li", {}, [btn]));
+    });
+
+    // Latest episodes: newest first
+    latest.slice(0, 10).forEach(function (p) {
+      var badges = [thumb(el("img", { alt: "", loading: "lazy" }), p.id, ["mqdefault"])];
+      if (p.seconds) badges.push(el("span", { class: "pod-len", text: duration(p.seconds) }));
+      if (isNew(p)) badges.push(el("span", { class: "pod-new", text: "NEW" }));
+      var btn = el("button", { class: "pl-item", type: "button" }, [
+        el("span", { class: "pl-thumb" }, badges),
+        el("span", {}, [el("b", { text: cleanTitle(p.title) }), el("small", { text: meta(p) })])
+      ]);
+      btn.dataset.id = p.id;
+      btn.addEventListener("click", function () { playAndShow(p, isNew(p) ? "New episode" : "Podcast"); });
+      latestRail.appendChild(btn);
+    });
+
+    $("#pod-play").addEventListener("click", play);
+    // Feature the newest episode if it is recent, otherwise the most played one
+    if (isNew(latest[0])) load(latest[0], "New episode", false);
+    else load(popular[0], "#1 most played", false);
+    $("#podcast").hidden = false;
   }
 
   /* ---------- Channels ---------- */
@@ -402,6 +478,7 @@
   safe(renderStats);
   safe(renderVideos);
   safe(renderShorts);
+  safe(renderPodcasts);
   safe(renderChannels);
   safe(initStory);
   safe(initRails);
