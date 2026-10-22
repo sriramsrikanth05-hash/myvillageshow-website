@@ -6,7 +6,7 @@ Writes assets/data/youtube.js (loaded by index.html as window.MVS_YT) and caches
 If YouTube can't be reached, the existing JSON is kept untouched.
 """
 import json, pathlib, re, sys, urllib.parse, urllib.request, xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets/data/youtube.js"
@@ -114,60 +114,82 @@ def latest_videos(channel_id):
     return out
 
 
-def feed_titles(url):
-    ns = {"a": "http://www.w3.org/2005/Atom", "yt": "http://www.youtube.com/xml/schemas/2015"}
+def feed_entries(url):
+    ns = {"a": "http://www.w3.org/2005/Atom", "yt": "http://www.youtube.com/xml/schemas/2015",
+          "media": "http://search.yahoo.com/mrss/"}
     for e in ET.fromstring(fetch(url).read()).findall("a:entry", ns):
-        yield e.findtext("yt:videoId", namespaces=ns), e.findtext("a:title", namespaces=ns) or ""
+        stats = e.find("media:group/media:community/media:statistics", ns)
+        yield {
+            "id": e.findtext("yt:videoId", namespaces=ns),
+            "title": e.findtext("a:title", namespaces=ns) or "",
+            "published": e.findtext("a:published", namespaces=ns) or "",
+            "views": int(stats.get("views", 0)) if stats is not None else 0,
+        }
 
 
-def search_titles(handle, query):
+def to_seconds(text):
+    # "1:35:10" -> 5710
+    secs = 0
+    for part in (text or "").split(":"):
+        if not part.isdigit():
+            return 0
+        secs = secs * 60 + int(part)
+    return secs
+
+
+def approx_date(text):
+    # Search results only say "2mo ago", "1y ago", "3 weeks ago"...
+    m = re.search(r"(\d+)\s*(y|mo|w|d|h|mi)", text or "")
+    days = int(m.group(1)) * {"y": 365, "mo": 30, "w": 7, "d": 1, "h": 0, "mi": 0}[m.group(2)] if m else 0
+    return (datetime.now(timezone.utc) - timedelta(days=days)).isoformat(timespec="seconds")
+
+
+def search_items(handle, query):
+    # Works from cloud servers (unlike individual watch pages, which YouTube blocks there).
     html = fetch(f"https://www.youtube.com/{handle}/search?query={urllib.parse.quote(query)}").read().decode()
     for r in find_all(initial_data(html), "videoRenderer"):
-        yield r.get("videoId"), "".join(t.get("text", "") for t in r.get("title", {}).get("runs", []))
-
-
-def video_details(video_id):
-    html = fetch(f"https://www.youtube.com/watch?v={video_id}").read().decode()
-    def first(pattern):
-        m = re.search(pattern, html)
-        return m.group(1) if m else ""
-    return {
-        "seconds": int(first(r'"lengthSeconds":"(\d+)"') or 0),
-        "published": first(r'"uploadDate":"([^"]+)"'),
-        "views": int(first(r'"viewCount":"(\d+)"') or 0),
-    }
+        views = re.sub(r"\D", "", (r.get("viewCountText") or {}).get("simpleText", ""))
+        yield {
+            "id": r.get("videoId"),
+            "title": "".join(t.get("text", "") for t in r.get("title", {}).get("runs", [])),
+            "seconds": to_seconds((r.get("lengthText") or {}).get("simpleText", "")),
+            "views": int(views or 0),
+            "published": approx_date((r.get("publishedTimeText") or {}).get("simpleText", "")),
+        }
 
 
 def podcasts(channel_id):
-    found = {}  # video id -> title
-    sources = [(f"https://www.youtube.com/feeds/videos.xml?playlist_id={PODCAST_PLAYLIST}", False)]
-    if channel_id:
-        sources.append((f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}", True))
-    for url, needs_word in sources:
-        try:
-            for vid, title in feed_titles(url):
-                if vid and (not needs_word or "podcast" in title.lower()):
-                    found.setdefault(vid, title)
-        except Exception as e:
-            print(f"  podcast feed failed: {e}", file=sys.stderr)
+    eps = {}
+    def allowed(title):
+        return not any(word in title.lower() for word in PODCAST_EXCLUDE)
+
+    # 1. The channel's podcast search gives each episode's length, views and rough age.
     try:
-        for vid, title in search_titles(PODCAST_CHANNEL, "podcast"):
-            if vid and "podcast" in title.lower():
-                found.setdefault(vid, title)
+        for it in search_items(PODCAST_CHANNEL, "podcast"):
+            if it["id"] and "podcast" in it["title"].lower() and allowed(it["title"]):
+                eps[it["id"]] = it
     except Exception as e:
         print(f"  podcast search failed: {e}", file=sys.stderr)
 
-    episodes = []
-    for vid, title in list(found.items())[:40]:
-        if any(word in title.lower() for word in PODCAST_EXCLUDE):
-            continue
+    # 2. The feeds give exact upload dates. The official playlist also lists episodes whose titles
+    #    don't say "podcast"; the uploads feed catches new episodes before search does.
+    sources = [(f"https://www.youtube.com/feeds/videos.xml?playlist_id={PODCAST_PLAYLIST}", True)]
+    if channel_id:
+        sources.append((f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}", False))
+    for url, from_playlist in sources:
         try:
-            d = video_details(vid)
+            for it in feed_entries(url):
+                if not it["id"] or not allowed(it["title"]):
+                    continue
+                if it["id"] in eps:
+                    eps[it["id"]].update(published=it["published"], views=max(it["views"], eps[it["id"]]["views"]))
+                elif from_playlist or ("podcast" in it["title"].lower() and not is_short(it["id"])):
+                    eps[it["id"]] = {**it, "seconds": 0}  # length unknown
         except Exception as e:
-            print(f"  details failed for {vid}: {e}", file=sys.stderr)
-            continue
-        if d["seconds"] >= PODCAST_MIN_SECONDS:
-            episodes.append({"id": vid, "title": title, **d})
+            print(f"  podcast feed failed: {e}", file=sys.stderr)
+
+    # Full episodes only (a length of 0 means unknown, which is kept)
+    episodes = [e for e in eps.values() if e["seconds"] == 0 or e["seconds"] >= PODCAST_MIN_SECONDS]
     episodes.sort(key=lambda e: e["views"], reverse=True)
     return episodes[:PODCAST_MAX]
 

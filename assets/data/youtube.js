@@ -1,5 +1,5 @@
 window.MVS_YT = {
-  "updated": "2026-10-22T20:25:28+00:00",
+  "updated": "2026-10-22T20:31:22+00:00",
   "channels": [
     {
       "id": "UCnprfRlJB7WE6zAEaOAfVYA",
@@ -52,21 +52,21 @@ window.MVS_YT = {
       "id": "4WD6ZqKE85w",
       "title": "Love Story | Part 02 | The Other Side | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-22T11:30:19+00:00",
-      "views": 88072,
+      "views": 88526,
       "short": false
     },
     {
       "id": "ZyUNfqY5siE",
       "title": "Dasara Paga | దసరా పగ | My Village Show | Gangavva | Chandu | Thirumal | Bathukamma | Dussehra",
       "published": "2026-10-15T12:11:02+00:00",
-      "views": 420684,
+      "views": 420708,
       "short": false
     },
     {
       "id": "4hPYiULUfzo",
       "title": "Love Story | Part 01| One Side | Village Love Story | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-07T12:00:26+00:00",
-      "views": 427850,
+      "views": 427872,
       "short": false
     },
     {
@@ -89,7 +89,7 @@ window.MVS_YT = {
       "id": "I4yek3WXtuU",
       "title": "బాగా ఆకలి గా ఉన్నది ... పొట్టు పొట్టు తిన్నాం ... #myvillageshow #food #gangavvacomedy",
       "published": "2026-10-16T02:30:07+00:00",
-      "views": 576825,
+      "views": 576899,
       "short": true
     },
     {
@@ -153,114 +153,114 @@ window.MVS_YT = {
     {
       "id": "lnKCLgibhm8",
       "title": "Gangavva interview after biggboss season 8 |  Telugu Podcast | sriram srikanth",
-      "seconds": 1809,
-      "published": "2024-11-16T03:25:29-08:00",
-      "views": 749581
+      "seconds": 1810,
+      "views": 749581,
+      "published": "2024-11-16T11:25:29+00:00"
     },
     {
       "id": "oJ7n7MVWfYE",
       "title": "టెస్లా కార్ తయారు చేసాం! 😱 | Telugu Experiments Sai యూట్యూబ్ జర్నీ PODCAST | My Village Show Vlogs",
-      "seconds": 3492,
-      "published": "2025-08-04T23:53:51-07:00",
-      "views": 515149
+      "seconds": 3493,
+      "views": 515147,
+      "published": "2025-08-05T06:53:51+00:00"
     },
     {
       "id": "29OgGrPw5EI",
       "title": "Mana Arogyam Mana Chetilone | Ft.Dr Vikrant Singh Thakur | My Village Show Podcast| Gangavva | Raju",
       "seconds": 9534,
-      "published": "2026-08-08T21:54:42-07:00",
-      "views": 368208
+      "views": 368216,
+      "published": "2026-08-09T04:54:42+00:00"
     },
     {
       "id": "R4QeJtXXBN0",
       "title": "చిట్టీలు వేయడం కరెక్టేనా ? | What is SIP ? | Podcast with M. Ram Prasad garu | My Village show vlogs",
-      "seconds": 5173,
-      "published": "2025-01-03T04:30:07-08:00",
-      "views": 317206
+      "seconds": 5174,
+      "views": 317206,
+      "published": "2025-01-03T12:30:07+00:00"
     },
     {
       "id": "CBSZgwyAlJA",
       "title": "SPECIAL TALK TO PILLI TIRUPATI | HIS LIFE JOURNEY | MY VLLAGE SHOW PODCAST",
       "seconds": 4234,
-      "published": "2026-04-06T01:19:11-07:00",
-      "views": 238411
+      "views": 238408,
+      "published": "2026-04-25T20:31:22+00:00"
+    },
+    {
+      "id": "9HyszJ9_CW8",
+      "title": "Shiva tho Chit Chat | Q and A | My Village Show vlogs",
+      "published": "2022-01-29T09:18:55+00:00",
+      "views": 230868,
+      "seconds": 0
     },
     {
       "id": "BXPlZoXFq4E",
       "title": "Bigg Boss 8 గురించి గంగవ్వ కి ఎం తెలుసు ? | Gangavva Interview before Bigg boss",
-      "seconds": 1694,
-      "published": "2024-10-08T22:39:04-07:00",
-      "views": 182164
+      "published": "2024-10-09T05:39:04+00:00",
+      "views": 182162,
+      "seconds": 0
     },
     {
       "id": "OTfUyYA3XGw",
       "title": "Coding లేకుండా IT JOBS | Low Coding , High Salaries | Bhaskar Jogi Talks Reality!",
-      "seconds": 2593,
-      "published": "2025-04-18T21:45:13-07:00",
-      "views": 181042
+      "published": "2025-04-19T04:45:13+00:00",
+      "views": 181042,
+      "seconds": 0
     },
     {
       "id": "4omNUL3nmwk",
       "title": "పల్లెటూరు లో రైతుల కోసం డ్రోన్ కంపెనీ |My village Show podcast | Vigneshwara Drones Santhosh Reddy ",
-      "seconds": 5709,
-      "published": "2026-09-01T05:16:18-07:00",
-      "views": 58727
+      "seconds": 5710,
+      "views": 58728,
+      "published": "2026-09-01T12:16:18+00:00"
+    },
+    {
+      "id": "IZPrtnWtfvg",
+      "title": "18 రోజుల్లో సినిమా చేశారు | Independent film making tips | Geometry box | My village show |",
+      "published": "2022-04-13T12:59:30+00:00",
+      "views": 54357,
+      "seconds": 0
     },
     {
       "id": "GZAOnuZeG_w",
-      "title": "Middle-Class కోసం ఫైనాన్షియల్ ప్లానింగ్ టిప్స్ | Vanga Rajendra Prasad | My Village Show Podcast",
-      "seconds": 5286,
-      "published": "2025-06-25T18:53:05-07:00",
-      "views": 53404
+      "title": "Financial Planning Tips for the Middle Class | Vanga Rajendra Prasad | My Village Show Podcast",
+      "seconds": 5287,
+      "views": 53404,
+      "published": "2025-06-26T01:53:05+00:00"
     },
     {
       "id": "-r2ATs8wAQw",
       "title": "Gangavva Childhood | My Village Show Podcast | Raju | Gangavva",
       "seconds": 3648,
-      "published": "2026-05-04T21:35:02-07:00",
-      "views": 45745
+      "views": 45745,
+      "published": "2026-05-05T04:35:02+00:00"
     },
     {
       "id": "Bb2Ji_g_TvA",
       "title": "గవర్నమెంట్ టీచర్ నుంచి యూట్యూబర్ వరకు | eGURUm TV Naresh | Telugu Podcast | My Village Show Vlogs",
       "seconds": 5825,
-      "published": "2025-07-11T07:16:49-07:00",
-      "views": 23313
+      "views": 23313,
+      "published": "2025-07-11T14:16:49+00:00"
     },
     {
       "id": "6Hj9V7_U98s",
       "title": "విలేజ్ కి లైబ్రరీ, క్రీడ స్థలం అవసరమా ? | Podcast with Sriram Mondaiah | my village show vlogs",
-      "seconds": 5372,
-      "published": "2024-12-26T22:31:00-08:00",
-      "views": 13249
+      "published": "2024-12-27T06:31:00+00:00",
+      "views": 13249,
+      "seconds": 0
     },
     {
       "id": "Wcc22EVOJKY",
       "title": "సినిమా తీయాలంటే కొత్త డైరెక్టర్స్ ఏం చేయాలి? Life Story of Raj Rachakonda | Mallesham movie Director",
-      "seconds": 6886,
-      "published": "2025-07-03T02:33:02-07:00",
-      "views": 10841
+      "published": "2025-07-03T09:33:02+00:00",
+      "views": 10841,
+      "seconds": 0
     },
     {
       "id": "bJgkGqG3w-s",
       "title": "Oracle Layoffs: What Now for Indian Tech? | BHASKAR JOGI | GO ONLINE TRAININGS | PODCAST",
       "seconds": 3981,
-      "published": "2026-03-29T21:01:55-07:00",
-      "views": 10307
-    },
-    {
-      "id": "rXnQUjvh6Yc",
-      "title": "51 ఏళ్ళ వయసు.. 10 రోజుల్లో 10 మారథాన్‌లు | TELANGANA Runners | My Village Show Podcast ",
-      "seconds": 4762,
-      "published": "2026-05-01T03:04:17-07:00",
-      "views": 7922
-    },
-    {
-      "id": "xKPuBPPcSCU",
-      "title": "Stories Of Grass Root Innovators |  Palle Srujana | Brigadier Ganesham Garu | My Village Show",
-      "seconds": 5791,
-      "published": "2025-10-05T21:01:10-07:00",
-      "views": 4747
+      "views": 10305,
+      "published": "2026-04-25T20:31:22+00:00"
     }
   ]
 };
