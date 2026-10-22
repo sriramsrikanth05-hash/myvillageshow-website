@@ -415,6 +415,16 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
 .member figcaption { position: absolute; left: .9rem; right: .9rem; bottom: .9rem; z-index: 1; color: var(--white); }
 .member b { display: block; font-family: var(--display); font-size: 1.05rem; line-height: 1.2; }
 .member span { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--highlight); }
+/* Cast members with their own page: the whole card is a link, marked with a chip (no hover on phones) */
+.member-link { position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
+.member-link:focus-visible { outline-offset: -4px; }
+.member .member-chip, .founder .member-chip { position: absolute; top: .7rem; right: .7rem; z-index: 1; padding: .28rem .6rem; border-radius: 999px; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: none; color: var(--ink); background: rgb(var(--white-rgb) / .88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 6px 16px -8px rgb(var(--black-rgb) / .5); transition: background .2s, color .2s; }
+.member-has-link:hover .member-chip, .founder-photo:hover .member-chip { background: var(--highlight); }
+.founder-photo { position: relative; display: block; border-radius: var(--radius); overflow: hidden; }
+.founder-photo img { transition: transform .6s var(--ease); }
+.founder-photo:hover img { transform: scale(1.04); }
+.founder-link { display: inline-block; margin-top: 1rem; font-weight: 600; font-size: .92rem; color: var(--accent-text); }
+.founder-link:hover { text-decoration: underline; }
 
 /* ---------- HRDC ---------- */
 .hrdc { background: radial-gradient(70% 90% at 100% 100%, rgb(var(--marigold-rgb) / .22), transparent 60%), linear-gradient(135deg, var(--leaf-deep), var(--leaf)); color: var(--fg); overflow: hidden; }
@@ -665,6 +675,7 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
   .headlines a { grid-template-columns: 1fr; gap: .2rem; }
   .founder { grid-template-columns: 1fr; }
   .founder img { max-width: 240px; }
+  .founder-photo { max-width: 240px; }
   .facts { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .hero h1 { font-size: clamp(2.5rem, 11.5vw, 3.8rem); }
