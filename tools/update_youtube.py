@@ -30,23 +30,46 @@ PODCAST_MIN_SECONDS = 20 * 60                 # full episodes only: skips traile
 PODCAST_EXCLUDE = ["anil geela", "అనిల్ జీల"]  # people no longer featured on the site
 PODCAST_MAX = 16
 
-# Celebrity specials from KalliValli, shown in the Podcast section. Chosen by hand (most-viewed celebrity
-# videos); titles, views and lengths are refreshed from the channel's "Popular" list on every run.
-CELEBRITY_CHANNEL = "@kallivalli450"
-CELEBRITY_SPECIALS = [
-    "s7ls0j-ZLRI",  # Gangavva Bigg Boss Experience, full interview
-    "lwZjFfBu-bQ",  # Feast with the Doctor: Dr. Vikrant Singh Thakur
-    "d5UnrZoO3YU",  # Vishnupriya, Maanas daawath
-    "YJloZZUrBLQ",  # Writer Padmabhushan team, Suhas
-    "th6yhmLZJzQ",  # Hidimba team, Ashwin Babu
-    "QgHbpr_ouU4",  # VJ Sunny
-    "oY8UyuOf9T0",  # RK Naidu (Sagar)
-    "ZS1Np_f-eH8",  # Bubble Gum movie team
-    "IR1_4lP7j3k",  # Sagileti Katha team, Navadeep
-    "hnzRM32nmW4",  # Nakka Srikanth
-    "8pkp-lpMJP0",  # Spark movie team
-    "OKDxE0Wtuys",  # Siddu Jonnalagadda
+# "Talk with Celebrity": celebrity, leader and official guests across all our channels, chosen by hand.
+# Each entry: (video id, channel handle, words to find it in that channel's search, kind).
+# Titles, views and lengths are refreshed from YouTube on every run.
+CELEBRITY_TALKS = [
+    ("cliqdtB329g", "@MyVillageShow", "Bithiri Sathi", "celebrity"),
+    ("18Kft7GnyJg", "@MyVillageShow", "Dhethadi Harika", "celebrity"),
+    ("QearANwPILA", "@MyVillageShow", "Nagarjuna", "celebrity"),
+    ("rNj9aGesxFs", "@MyVillageShow", "Sadhguru", "celebrity"),
+    ("p2b7mij_vOc", "@MyVillageShowVlogs", "Sarileru Neekevvaru", "celebrity"),
+    ("s7ls0j-ZLRI", "@kallivalli450", "Gangavva Biggboss Experience", "celebrity"),
+    ("lwZjFfBu-bQ", "@kallivalli450", "Feast with the Doctor", "celebrity"),
+    ("cRhy9pour1M", "@VillageShow-Mix", "Suma Kanakala", "celebrity"),
+    ("mQok9TRado0", "@MyVillageShow", "Nithin Rangde", "celebrity"),
+    ("MfiwzVKWZU4", "@VillageShow-Mix", "Nithya Menon", "celebrity"),
+    ("WOpmeEwrhR0", "@MyVillageShow", "Kajal Ashta Chamma", "celebrity"),
+    ("aRAVE0_WYEE", "@MyVillageShow", "Dj Tillu", "celebrity"),
+    ("d5UnrZoO3YU", "@kallivalli450", "Vishnupriya Maanas", "celebrity"),
+    ("YJloZZUrBLQ", "@kallivalli450", "Writer Padmabhushan", "celebrity"),
+    ("th6yhmLZJzQ", "@kallivalli450", "Ashwin Babu", "celebrity"),
+    ("QgHbpr_ouU4", "@kallivalli450", "VJ Sunny", "celebrity"),
+    ("oY8UyuOf9T0", "@kallivalli450", "RK Naidu", "celebrity"),
+    ("ZS1Np_f-eH8", "@kallivalli450", "Bubble Gum team", "celebrity"),
+    ("IR1_4lP7j3k", "@kallivalli450", "Navadeep", "celebrity"),
+    ("297s4lIpW5I", "@VillageShow-Mix", "Sohel Mukku Avinash", "celebrity"),
+    ("hnzRM32nmW4", "@kallivalli450", "Nakka Srikanth", "celebrity"),
+    ("lA024OD8TSQ", "@MyVillageShowVlogs", "Bandi Saroj Kumar", "celebrity"),
+    ("8pkp-lpMJP0", "@kallivalli450", "Spark Movie team", "celebrity"),
+    ("OAv6SQ8Yz68", "@VillageShow-Mix", "Chaitanya Rao", "celebrity"),
+    ("dHBA1Z0tOmg", "@kallivalli450", "Municipal commissioner Karimnagar", "official"),
+    ("4K3Fsi0uxZA", "@MyVillageShowVlogs", "Woman Achiever Award", "official"),
+    ("OKDxE0Wtuys", "@kallivalli450", "Siddu Jonnalagadda", "celebrity"),
+    ("B6CA7OtzeZo", "@VillageShow-Mix", "Hero srikanth", "celebrity"),
 ]
+# New uploads are added automatically when the title marks a guest: "ft.", "feat", "@name", "interview",
+# "movie team", "chatting with", "muchatlu", or a title such as Dr./Hero/Director/Minister/MLA/Collector.
+CELEBRITY_MARKERS = re.compile(
+    r"\bft\b|\bfeat\b|@[A-Za-z]|interview|movie team|chatting with|muchatlu|ముచ్చట్లు|"
+    r"\b(dr|hero|heroine|actor|actress|director|minister|mla|mp|collector|commissioner|governor|ktr)\b",
+    re.I)
+CELEBRITY_OFFICIAL = re.compile(r"\b(minister|mla|mp|collector|commissioner|governor|ktr|cm)\b", re.I)
 UA = {"User-Agent": "Mozilla/5.0 (Macintosh) AppleWebKit/537.36 Chrome/120 Safari/537.36",
       "Accept-Language": "en-US,en;q=0.9"}
 
@@ -233,62 +256,41 @@ def podcasts(channels):
     return episodes[:PODCAST_MAX]
 
 
-def count(text):
-    # "5.1M views" -> 5100000, "834K views" -> 834000, "1,234 views" -> 1234
-    m = re.search(r"([\d.,]+)\s*([KMB])?", text or "")
-    if not m:
-        return 0
-    return int(float(m.group(1).replace(",", "")) * {"K": 1e3, "M": 1e6, "B": 1e9}.get(m.group(2) or "", 1))
-
-
-def popular_videos(handle, pages=6):
-    # A channel's Videos tab sorted by "Popular", read through the same API the YouTube website uses.
-    html = fetch(f"https://www.youtube.com/{handle}/videos").read().decode()
-    key = re.search(r'"INNERTUBE_API_KEY":"([^"]+)"', html).group(1)
-    version = re.search(r'"INNERTUBE_CLIENT_VERSION":"([^"]+)"', html).group(1)
-    token = re.search(r'"chipViewModel":\{"text":"Popular".*?"token":"([^"]+)"', html).group(1)
-    found = {}
-    for _ in range(pages):
-        body = json.dumps({"context": {"client": {"clientName": "WEB", "clientVersion": version, "hl": "en"}},
-                           "continuation": token}).encode()
-        req = urllib.request.Request(f"https://www.youtube.com/youtubei/v1/browse?key={key}", data=body,
-                                     headers={**UA, "Content-Type": "application/json"})
-        data = json.load(urllib.request.urlopen(req, timeout=20))
-        for r in find_all(data, "lockupViewModel"):
-            text = json.dumps(r, ensure_ascii=False)
-            title = re.search(r'"title": \{"content": "((?:[^"\\]|\\.)+)"', text)
-            meta = re.findall(r'"text": \{"content": "([^"]+)"', text)
-            length = re.search(r'"text": "(\d+:\d+(?::\d+)?)"', text)
-            if r.get("contentId") and title:
-                found[r["contentId"]] = {
-                    "id": r["contentId"],
-                    "title": json.loads(f'"{title.group(1)}"'),
-                    "views": count(next((m for m in meta if "view" in m), "")),
-                    "published": approx_date(next((m for m in meta if "ago" in m), "")),
-                    "seconds": to_seconds(length.group(1) if length else ""),
-                }
-        tokens = list(find_all(data, "continuationCommand"))
-        if not tokens:
-            break
-        token = tokens[-1]["token"]
-    return found
-
-
-def celebrity_specials(channels):
-    ch = next((c for c in channels if c["handle"] == CELEBRITY_CHANNEL), None)
-    if not ch:
-        return []
+def celebrity_talks(channels):
+    by_handle = {c["handle"]: c for c in channels}
     previous = {v["id"]: v for v in previous_data().get("celebrity", [])}
-    try:
-        popular = popular_videos(CELEBRITY_CHANNEL)
-    except Exception as e:
-        print(f"  celebrity specials: popular list failed: {e}", file=sys.stderr)
-        popular = {}
     out = []
-    for vid in CELEBRITY_SPECIALS:
-        v = popular.get(vid) or previous.get(vid)  # keep the last good numbers if this run missed it
+    for vid, handle, query, kind in CELEBRITY_TALKS:
+        ch = by_handle.get(handle)
+        if not ch:
+            continue
+        found = None
+        try:
+            found = next((it for it in search_items(handle, query) if it["id"] == vid), None)
+        except Exception as e:
+            print(f"  celebrity search failed for {vid}: {e}", file=sys.stderr)
+        v = found or previous.get(vid)  # keep the last good numbers if this run missed it
         if v:
-            out.append({**v, "channel": ch["title"], "channel_url": ch["url"]})
+            out.append({**v, "kind": kind, "channel": ch["title"], "channel_url": ch["url"]})
+        else:
+            print(f"  celebrity talk not found: {vid} ({query})", file=sys.stderr)
+
+    # New talks: each channel's newest uploads whose titles mark a guest
+    known = {v["id"] for v in out} | {t[0] for t in CELEBRITY_TALKS}
+    for ch in channels:
+        try:
+            for it in feed_entries(f"https://www.youtube.com/feeds/videos.xml?channel_id={ch['id']}"):
+                t = it["title"]
+                if (it["id"] in known or not CELEBRITY_MARKERS.search(t) or "podcast" in t.lower()
+                        or any(word in t.lower() for word in PODCAST_EXCLUDE) or is_short(it["id"])):
+                    continue
+                kind = "official" if CELEBRITY_OFFICIAL.search(t) else "celebrity"
+                out.append({**it, "seconds": 0, "kind": kind, "channel": ch["title"], "channel_url": ch["url"], "auto": True})
+                known.add(it["id"])
+                print(f"  new celebrity talk: {it['id']} {t[:60]}")
+        except Exception as e:
+            print(f"  celebrity feed failed for {ch['handle']}: {e}", file=sys.stderr)
+
     out.sort(key=lambda v: v["views"], reverse=True)
     return out
 
@@ -333,10 +335,10 @@ def main():
 
     celeb = []
     try:
-        celeb = celebrity_specials(channels)
-        print(f"{len(celeb)} celebrity specials")
+        celeb = celebrity_talks(channels)
+        print(f"{len(celeb)} celebrity talks")
     except Exception as e:
-        print(f"Celebrity specials failed: {e}", file=sys.stderr)
+        print(f"Celebrity talks failed: {e}", file=sys.stderr)
     if not celeb:
         celeb = previous_data().get("celebrity", [])
 

@@ -509,7 +509,12 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
 .pl-thumb .pod-len { position: absolute; right: .5rem; bottom: .5rem; z-index: 1; font-size: .72rem; font-weight: 700; padding: .15rem .45rem; border-radius: 6px; background: rgb(var(--night-rgb) / .8); color: var(--white); font-variant-numeric: tabular-nums; }
 .pl-thumb .pod-new { position: absolute; left: .5rem; top: .5rem; z-index: 1; font-size: .66rem; font-weight: 700; letter-spacing: .1em; padding: .2rem .5rem; border-radius: 6px; background: var(--plum); color: var(--white); }
 #podcast .pl-item.active .pl-thumb::before { display: none; }
-.celeb-mark { background: var(--plum); color: var(--white); }
+/* Talk with Celebrity reuses the podcast layout in the gold tone */
+#celebrity .pod-badge, #celebrity .cel-kind { background: var(--tone-fill); color: var(--tone-on); }
+#celebrity .pod-rank { color: var(--tone-text); }
+#celebrity .pod-item:hover, #celebrity .pod-item.active { background: rgb(var(--tone-rgb) / .16); }
+#celebrity .pl-item.active .pl-thumb::before { display: none; }
+.pl-thumb .cel-kind { position: absolute; left: .5rem; top: .5rem; z-index: 1; font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .5rem; border-radius: 6px; }
 
 @media (max-width: 880px) {
   .pod-feature { grid-template-columns: 1fr; }
@@ -605,7 +610,10 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
   .team { grid-template-columns: repeat(3, 1fr); }
   .pillars { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .links a { padding: .45rem .6rem; }
+  .nav-inner { gap: 1rem; }
+  .links { gap: 0; }
+  .links a { padding: .4rem .5rem; font-size: .84rem; }
+  .nav-cta { padding: .6rem 1rem; font-size: .85rem; }
   .now-card { width: 290px; }
 }
 @media (max-width: 880px) {
@@ -628,7 +636,7 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
   .menu-open .links a:nth-child(2) { transition-delay: .04s; } .menu-open .links a:nth-child(3) { transition-delay: .08s; }
   .menu-open .links a:nth-child(4) { transition-delay: .12s; } .menu-open .links a:nth-child(5) { transition-delay: .16s; }
   .menu-open .links a:nth-child(6) { transition-delay: .2s; } .menu-open .links a:nth-child(7) { transition-delay: .24s; }
-  .menu-open .links a:nth-child(8) { transition-delay: .28s; } .menu-open .links a:nth-child(9) { transition-delay: .32s; } .menu-open .links a:nth-child(10) { transition-delay: .36s; }
+  .menu-open .links a:nth-child(8) { transition-delay: .28s; } .menu-open .links a:nth-child(9) { transition-delay: .32s; } .menu-open .links a:nth-child(10) { transition-delay: .36s; } .menu-open .links a:nth-child(11) { transition-delay: .4s; }
   .links .links-cta { display: inline-flex; align-self: flex-start; margin-top: 1.5rem; font-family: var(--body); font-size: 1rem; font-weight: 600; letter-spacing: 0; padding: 1rem 1.8rem; border-radius: 999px; background: var(--gradient-brand) !important; color: var(--on-accent); }
   .menu-open .burger span { background: var(--ink); }
   .menu-open .nav-cta { opacity: 0; pointer-events: none; }

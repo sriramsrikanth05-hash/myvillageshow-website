@@ -33,6 +33,7 @@
       <a href="#story">Story</a>
       <a href="#videos">Shows</a>
       <a href="#podcast">Podcast</a>
+      <a href="#celebrity">Celebrity</a>
       <a href="#channels">Channels</a>
       <a href="#team">Team</a>
       <a href="#hrdc">HRDC</a>
@@ -301,13 +302,44 @@
         </div>
         <div class="rail" id="pod-latest"></div>
       </div>
+    </div>
+  </section>
 
-      <div class="row" id="celeb-wrap" hidden>
+  <!-- TALK WITH CELEBRITY (filled from assets/data/youtube.js; stays hidden if there are no talks) -->
+  <section id="celebrity" class="section alt tone-press" hidden>
+    <div class="wrap">
+      <div class="head reveal">
+        <div>
+          <p class="kicker">Celebrities &amp; leaders</p>
+          <h2>Talk with Celebrity</h2>
+          <p class="muted head-sub">Film stars, anchors, doctors, spiritual leaders and officials who came to the village, from all our channels. New ones appear here automatically.</p>
+        </div>
+      </div>
+
+      <div class="pod-feature reveal">
+        <div class="pod-player" id="cel-player">
+          <img id="cel-thumb" src="assets/img/village.jpg" alt="">
+          <div class="pod-cap">
+            <span class="pod-badge" id="cel-badge">Most watched</span>
+            <b id="cel-title">Talk with Celebrity</b>
+            <small id="cel-meta"></small>
+            <button class="btn btn-primary" id="cel-play" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Play video
+            </button>
+          </div>
+        </div>
+        <div class="pod-top">
+          <h3>Most watched</h3>
+          <ol id="cel-top"></ol>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="row-head">
-          <h3><span class="top-mark celeb-mark">Celebrity specials</span> From KalliValli</h3>
+          <h3>All celebrity talks</h3>
           <div class="rail-nav"><button type="button" class="rail-btn" data-dir="-1" aria-label="Scroll left">‹</button><button type="button" class="rail-btn" data-dir="1" aria-label="Scroll right">›</button></div>
         </div>
-        <div class="rail" id="pod-celeb"></div>
+        <div class="rail" id="cel-all"></div>
       </div>
     </div>
   </section>
@@ -560,6 +592,7 @@
       <h4>Watch</h4>
       <a href="#videos">Latest shows</a>
       <a href="#podcast">Podcast</a>
+      <a href="#celebrity">Talk with Celebrity</a>
       <a href="#channels">Our channels</a>
       <a href="https://www.youtube.com/@MyVillageShow" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.instagram.com/myvillageshow/" target="_blank" rel="noopener">Instagram</a>
