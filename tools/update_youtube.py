@@ -341,6 +341,9 @@ def main():
         print(f"Celebrity talks failed: {e}", file=sys.stderr)
     if not celeb:
         celeb = previous_data().get("celebrity", [])
+    # Podcast and Talk with Celebrity never share a video: a podcast episode stays in Podcast only
+    pod_ids = {p["id"] for p in pods}
+    celeb = [c for c in celeb if c["id"] not in pod_ids]
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     # A .js file (not .json) so the site also works when opened straight from disk.
