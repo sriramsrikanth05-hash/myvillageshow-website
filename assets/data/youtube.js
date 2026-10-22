@@ -1,5 +1,5 @@
 window.MVS_YT = {
-  "updated": "2026-10-22T21:51:04+00:00",
+  "updated": "2026-10-22T21:58:13+00:00",
   "channels": [
     {
       "id": "UCnprfRlJB7WE6zAEaOAfVYA",
@@ -57,21 +57,21 @@ window.MVS_YT = {
       "id": "4WD6ZqKE85w",
       "title": "Love Story | Part 02 | The Other Side | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-22T11:30:19+00:00",
-      "views": 92283,
+      "views": 92408,
       "short": false
     },
     {
       "id": "ZyUNfqY5siE",
       "title": "Dasara Paga | దసరా పగ | My Village Show | Gangavva | Chandu | Thirumal | Bathukamma | Dussehra",
       "published": "2026-10-15T12:11:02+00:00",
-      "views": 420972,
+      "views": 420997,
       "short": false
     },
     {
       "id": "4hPYiULUfzo",
       "title": "Love Story | Part 01| One Side | Village Love Story | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-07T12:00:26+00:00",
-      "views": 428065,
+      "views": 428067,
       "short": false
     },
     {
@@ -85,7 +85,7 @@ window.MVS_YT = {
       "id": "sQGwxBPtlnQ",
       "title": "దుబాయి నుండి వచ్చినంక…దావత్  Part- 2 | Dubai Nundi Vachinanka | My Village Show Comedy | Gangavva",
       "published": "2026-09-27T04:58:56+00:00",
-      "views": 695493,
+      "views": 695809,
       "short": false
     }
   ],
@@ -94,21 +94,21 @@ window.MVS_YT = {
       "id": "I4yek3WXtuU",
       "title": "బాగా ఆకలి గా ఉన్నది ... పొట్టు పొట్టు తిన్నాం ... #myvillageshow #food #gangavvacomedy",
       "published": "2026-10-16T02:30:07+00:00",
-      "views": 577305,
+      "views": 577312,
       "short": true
     },
     {
       "id": "O4svBIojJJg",
       "title": "బస్సు బస్టాండ్ లో అమ్మాయికి లైటింగ్ కొడితే ... #comedy #myvillageshowcomedy",
       "published": "2026-10-14T09:07:40+00:00",
-      "views": 41823,
+      "views": 41914,
       "short": true
     },
     {
       "id": "tQuaiLGfWxM",
       "title": "పిల్లకి లైన్ వేస్తే ... #lovesong  #love  #myvillageshow",
       "published": "2026-10-13T06:26:49+00:00",
-      "views": 29041,
+      "views": 29135,
       "short": true
     },
     {
@@ -129,7 +129,7 @@ window.MVS_YT = {
       "id": "-05PkIuWoqg",
       "title": "దెయ్యానికి పెట్టుడు  #myvillageshow #SHORTS #gangavva",
       "published": "2026-10-03T06:07:38+00:00",
-      "views": 23511,
+      "views": 23522,
       "short": true
     },
     {
@@ -143,7 +143,7 @@ window.MVS_YT = {
       "id": "2TAIb2w_2B0",
       "title": "పోలీసుల అడ్డా,బలైన బిడ్డ  #comedy #myvillageshow",
       "published": "2026-09-29T05:08:57+00:00",
-      "views": 354122,
+      "views": 354310,
       "short": true
     },
     {
@@ -168,7 +168,7 @@ window.MVS_YT = {
       "id": "oJ7n7MVWfYE",
       "title": "టెస్లా కార్ తయారు చేసాం! 😱 | Telugu Experiments Sai యూట్యూబ్ జర్నీ PODCAST | My Village Show Vlogs",
       "seconds": 3493,
-      "views": 515157,
+      "views": 515147,
       "published": "2025-08-05T06:53:51+00:00",
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
@@ -196,7 +196,7 @@ window.MVS_YT = {
       "title": "SPECIAL TALK TO PILLI TIRUPATI | HIS LIFE JOURNEY | MY VLLAGE SHOW PODCAST",
       "seconds": 4234,
       "views": 238408,
-      "published": "2026-04-25T21:50:48+00:00",
+      "published": "2026-04-25T21:57:49+00:00",
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
@@ -204,7 +204,7 @@ window.MVS_YT = {
       "id": "9HyszJ9_CW8",
       "title": "Shiva tho Chit Chat | Q and A | My Village Show vlogs",
       "published": "2022-01-29T09:18:55+00:00",
-      "views": 230869,
+      "views": 230868,
       "seconds": 0,
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
@@ -213,7 +213,7 @@ window.MVS_YT = {
       "id": "BXPlZoXFq4E",
       "title": "Bigg Boss 8 గురించి గంగవ్వ కి ఎం తెలుసు ? | Gangavva Interview before Bigg boss",
       "published": "2024-10-09T05:39:04+00:00",
-      "views": 182165,
+      "views": 182164,
       "seconds": 0,
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
@@ -276,7 +276,7 @@ window.MVS_YT = {
       "id": "6Hj9V7_U98s",
       "title": "విలేజ్ కి లైబ్రరీ, క్రీడ స్థలం అవసరమా ? | Podcast with Sriram Mondaiah | my village show vlogs",
       "published": "2024-12-27T06:31:00+00:00",
-      "views": 13251,
+      "views": 13249,
       "seconds": 0,
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
@@ -285,7 +285,7 @@ window.MVS_YT = {
       "id": "Wcc22EVOJKY",
       "title": "సినిమా తీయాలంటే కొత్త డైరెక్టర్స్ ఏం చేయాలి? Life Story of Raj Rachakonda | Mallesham movie Director",
       "published": "2025-07-03T09:33:02+00:00",
-      "views": 10842,
+      "views": 10841,
       "seconds": 0,
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
@@ -295,7 +295,7 @@ window.MVS_YT = {
       "title": "Oracle Layoffs: What Now for Indian Tech? | BHASKAR JOGI | GO ONLINE TRAININGS | PODCAST",
       "seconds": 3981,
       "views": 10308,
-      "published": "2026-04-25T21:50:48+00:00",
+      "published": "2026-04-25T21:57:49+00:00",
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     }
@@ -306,7 +306,7 @@ window.MVS_YT = {
       "title": "బోటి కూర దావత్ Ft Bithiri Sathi | Gangavva| My Village Show comedy",
       "seconds": 1024,
       "views": 21086703,
-      "published": "2019-10-24T21:50:50+00:00",
+      "published": "2019-10-24T21:57:53+00:00",
       "kind": "celebrity",
       "channel": "My Village Show",
       "channel_url": "https://www.youtube.com/@MyVillageShow"
@@ -316,17 +316,47 @@ window.MVS_YT = {
       "title": "Gangavva tho Kaluvapothe  ft. Dhethadi Harika | My Village Show Comedy",
       "seconds": 1013,
       "views": 17753689,
-      "published": "2019-10-24T21:50:50+00:00",
+      "published": "2019-10-24T21:57:53+00:00",
       "kind": "celebrity",
       "channel": "My Village Show",
       "channel_url": "https://www.youtube.com/@MyVillageShow"
+    },
+    {
+      "id": "6Q2cclAEZMc",
+      "title": "రానా కల్లు ధావత్ - పరేషాన్ ? | Rana Daggubati | Pareshan on June 2nd | Gangavva | Anil geela | Dawat",
+      "seconds": 1444,
+      "views": 5132485,
+      "published": "2023-10-23T21:57:51+00:00",
+      "kind": "celebrity",
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "xMTy77RJW8A",
+      "title": "KTR అన్నతో నాటుకోడి కూర చేపిచ్చినం | Dawath | My village show | Gangavva | Anil geela | Anji mama",
+      "seconds": 2559,
+      "views": 5029446,
+      "published": "2024-10-22T21:57:52+00:00",
+      "kind": "leader",
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "gGvFturuhM4",
+      "title": "గొర్లు కాయవోతే ? Ft @Pradeep Machiraju  | My Village Show Comedy | Gangavva | Raju | Anil Geela",
+      "seconds": 923,
+      "views": 4645576,
+      "published": "2021-10-23T21:57:52+00:00",
+      "kind": "celebrity",
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
     },
     {
       "id": "QearANwPILA",
       "title": "Anna will meet again | ft Nagarjuna | Gangavva | My Village Show Comedy | Wild Dog movie",
       "seconds": 1287,
       "views": 4337900,
-      "published": "2021-10-23T21:50:51+00:00",
+      "published": "2021-10-23T21:57:53+00:00",
       "kind": "celebrity",
       "channel": "My Village Show",
       "channel_url": "https://www.youtube.com/@MyVillageShow"
@@ -336,7 +366,7 @@ window.MVS_YT = {
       "title": "Sadhguru with Gangavva Muchatlu||My Village Show|| Sadhguru | Save Soil",
       "seconds": 1375,
       "views": 4327809,
-      "published": "2022-10-23T21:50:51+00:00",
+      "published": "2022-10-23T21:57:54+00:00",
       "kind": "celebrity",
       "channel": "My Village Show",
       "channel_url": "https://www.youtube.com/@MyVillageShow"
@@ -346,7 +376,7 @@ window.MVS_YT = {
       "title": "On the sets of Sarileru Neekevvaru | making | My Village Show Vlogs #48",
       "seconds": 658,
       "views": 4261710,
-      "published": "2020-10-23T21:50:51+00:00",
+      "published": "2020-10-23T21:57:54+00:00",
       "kind": "celebrity",
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
@@ -356,7 +386,7 @@ window.MVS_YT = {
       "title": "Gangavva Biggboss Experience |  Full Interview | My Village Show",
       "seconds": 3153,
       "views": 3207593,
-      "published": "2020-10-23T21:50:52+00:00",
+      "published": "2020-10-23T21:57:54+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -366,7 +396,7 @@ window.MVS_YT = {
       "title": "Feast with the Doctor | Chandu | Dr. Vikranthsing Thakur | Village food | kallivalli | myvillageshow",
       "seconds": 1128,
       "views": 1830711,
-      "published": "2026-08-23T21:50:52+00:00",
+      "published": "2026-08-23T21:57:55+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -376,7 +406,7 @@ window.MVS_YT = {
       "title": "జయమ్మతో గంగవ్వ పంచాయితీ ft. Suma Kanakala | My Village Show | Gangavva",
       "seconds": 926,
       "views": 1757930,
-      "published": "2022-10-23T21:50:52+00:00",
+      "published": "2022-10-23T21:57:55+00:00",
       "kind": "celebrity",
       "channel": "Village Show - Mix",
       "channel_url": "https://www.youtube.com/@VillageShow-Mix"
@@ -386,7 +416,7 @@ window.MVS_YT = {
       "title": "గంగవ్వ  సోల్తి పెడితే | ft Nithin | Rangde | My Village Show comedy | Gangavva",
       "seconds": 614,
       "views": 1750212,
-      "published": "2021-10-23T21:50:53+00:00",
+      "published": "2021-10-23T21:57:56+00:00",
       "kind": "celebrity",
       "channel": "My Village Show",
       "channel_url": "https://www.youtube.com/@MyVillageShow"
@@ -396,7 +426,7 @@ window.MVS_YT = {
       "title": "గంగవ్వకి  స్కైలాబ్ భయం | ft. Nithya Menon | Rahul Ramakrishna | Gangavva | My Village Show",
       "seconds": 794,
       "views": 1746877,
-      "published": "2022-10-23T21:50:53+00:00",
+      "published": "2022-10-23T21:57:56+00:00",
       "kind": "celebrity",
       "channel": "Village Show - Mix",
       "channel_url": "https://www.youtube.com/@VillageShow-Mix"
@@ -406,7 +436,7 @@ window.MVS_YT = {
       "title": "Kajal tho Ashta Chamma |  Gangavva comedy interview",
       "seconds": 665,
       "views": 1516858,
-      "published": "2019-10-24T21:50:54+00:00",
+      "published": "2019-10-24T21:57:56+00:00",
       "kind": "celebrity",
       "channel": "My Village Show",
       "channel_url": "https://www.youtube.com/@MyVillageShow"
@@ -416,7 +446,7 @@ window.MVS_YT = {
       "title": "DJ దొంగలు Ft Dj Tillu | My village Show comedy | Streaming on  @ahaTelugu",
       "seconds": 698,
       "views": 1498295,
-      "published": "2022-10-23T21:50:54+00:00",
+      "published": "2022-10-23T21:57:57+00:00",
       "kind": "celebrity",
       "channel": "My Village Show",
       "channel_url": "https://www.youtube.com/@MyVillageShow"
@@ -426,7 +456,7 @@ window.MVS_YT = {
       "title": "బొందలో చికెన్ ? Vishnupriya , Maanas Daawath | Full comedy | My village show | Chicken food video |",
       "seconds": 1117,
       "views": 1414511,
-      "published": "2023-10-23T21:50:54+00:00",
+      "published": "2023-10-23T21:57:57+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -436,7 +466,7 @@ window.MVS_YT = {
       "title": "కుండ మటన్ గుడాలు దావత్  with Writer Padmabhushan team | Suhas | Anji mama | village cooking",
       "seconds": 715,
       "views": 1367197,
-      "published": "2023-10-23T21:50:55+00:00",
+      "published": "2023-10-23T21:57:58+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -446,7 +476,7 @@ window.MVS_YT = {
       "title": "రొయ్యల ధమ్ బిర్యానీ హిడింబ టీం | My Village Show | KalliValli | Ashwin Babu | Gangavva | Chandu",
       "seconds": 1158,
       "views": 1210080,
-      "published": "2023-10-23T21:50:55+00:00",
+      "published": "2023-10-23T21:58:00+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -456,7 +486,7 @@ window.MVS_YT = {
       "title": "గంగవ్వ సెలూన్ ft VJ Sunny | Raju | Gangavva",
       "seconds": 889,
       "views": 834815,
-      "published": "2025-10-22T21:50:55+00:00",
+      "published": "2025-10-22T21:58:02+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -466,7 +496,7 @@ window.MVS_YT = {
       "title": "Naatu Kodi Chicken Cooking with RK Naidu (Sagar Anna), Gangavva & Raju | KalliValli",
       "seconds": 1014,
       "views": 831661,
-      "published": "2025-10-22T21:50:56+00:00",
+      "published": "2025-10-22T21:58:03+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -476,7 +506,7 @@ window.MVS_YT = {
       "title": "నాటు కోడి లైట్ గ్రీన్ చెమెన్ చికెన్ ft. Bubble Gum team | Village cooking | My village show",
       "seconds": 1925,
       "views": 786387,
-      "published": "2024-10-22T21:50:56+00:00",
+      "published": "2024-10-22T21:58:05+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -486,7 +516,7 @@ window.MVS_YT = {
       "title": "పటియాలా చికెన్ with Sagileti katha movie team | Navadeep | Village cooking | My Village show |",
       "seconds": 1070,
       "views": 744025,
-      "published": "2023-10-23T21:49:59+00:00",
+      "published": "2023-10-23T21:58:06+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -496,7 +526,7 @@ window.MVS_YT = {
       "title": "గంగవ్వ ఇస్ర్తీ దుకాణం పెడ్తే ? Ft. Sohel & Mukku Avinash  | Gangavva | My village show  | Chandu Fun",
       "seconds": 963,
       "views": 519920,
-      "published": "2024-10-22T21:50:57+00:00",
+      "published": "2024-10-22T21:58:06+00:00",
       "kind": "celebrity",
       "channel": "Village Show - Mix",
       "channel_url": "https://www.youtube.com/@VillageShow-Mix"
@@ -506,7 +536,7 @@ window.MVS_YT = {
       "title": "Telangana Fish TIkka Ft. Nakka Srikanth | My village Show Cooking Daawath",
       "seconds": 866,
       "views": 425283,
-      "published": "2023-10-23T21:50:57+00:00",
+      "published": "2023-10-23T21:58:06+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -516,7 +546,7 @@ window.MVS_YT = {
       "title": "Film Making tips from Bandi Saroj Kumar | Suryasthamayam Director",
       "seconds": 1538,
       "views": 364231,
-      "published": "2019-10-24T21:50:58+00:00",
+      "published": "2019-10-24T21:58:07+00:00",
       "kind": "celebrity",
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
@@ -526,7 +556,7 @@ window.MVS_YT = {
       "title": "చంపారన్ కుండ మటన్ with Spark Movie team | Gangavva | Anji Mama | Village Cooking",
       "seconds": 1383,
       "views": 295349,
-      "published": "2024-10-22T21:50:58+00:00",
+      "published": "2024-10-22T21:58:07+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -536,7 +566,7 @@ window.MVS_YT = {
       "title": "మంత్రాల గంగవ్వ  Ft. Sharathulu varthisthai team | Chaitanya Rao | Bhoomi Shetty | Gangavva",
       "seconds": 1095,
       "views": 251428,
-      "published": "2024-10-22T21:50:58+00:00",
+      "published": "2024-10-22T21:58:07+00:00",
       "kind": "celebrity",
       "channel": "Village Show - Mix",
       "channel_url": "https://www.youtube.com/@VillageShow-Mix"
@@ -546,7 +576,7 @@ window.MVS_YT = {
       "title": "A Day With Municipal commissioner Karimnagar | చెత్త ఎక్కడికి పోతుందో తెలుసా? | Gangavva",
       "seconds": 1652,
       "views": 230211,
-      "published": "2025-10-22T21:50:59+00:00",
+      "published": "2025-10-22T21:58:07+00:00",
       "kind": "official",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -556,7 +586,7 @@ window.MVS_YT = {
       "title": "Gangavva got Woman Achiever Award 2020",
       "seconds": 505,
       "views": 132621,
-      "published": "2020-10-23T21:50:59+00:00",
+      "published": "2020-10-23T21:58:08+00:00",
       "kind": "official",
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
@@ -566,7 +596,7 @@ window.MVS_YT = {
       "title": "Chatting with Gangavva | Gangavva | Siddu Jonnalagadda",
       "seconds": 772,
       "views": 53369,
-      "published": "2025-10-22T21:50:59+00:00",
+      "published": "2025-10-22T21:58:08+00:00",
       "kind": "celebrity",
       "channel": "KalliValli",
       "channel_url": "https://www.youtube.com/@kallivalli450"
@@ -576,7 +606,7 @@ window.MVS_YT = {
       "title": "Gangavva Interview with  Hero srikanth | కోట బొమ్మాలి లొల్లి",
       "seconds": 1393,
       "views": 50131,
-      "published": "2024-10-22T21:51:00+00:00",
+      "published": "2024-10-22T21:58:09+00:00",
       "kind": "celebrity",
       "channel": "Village Show - Mix",
       "channel_url": "https://www.youtube.com/@VillageShow-Mix"

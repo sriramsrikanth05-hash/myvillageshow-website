@@ -34,6 +34,9 @@ PODCAST_MAX = 16
 # Each entry: (video id, channel handle, words to find it in that channel's search, kind).
 # Titles, views and lengths are refreshed from YouTube on every run.
 CELEBRITY_TALKS = [
+    ("6Q2cclAEZMc", "@kallivalli450", "Rana Daggubati", "celebrity"),
+    ("xMTy77RJW8A", "@kallivalli450", "KTR", "leader"),
+    ("gGvFturuhM4", "@kallivalli450", "Pradeep Machiraju", "celebrity"),
     ("cliqdtB329g", "@MyVillageShow", "Bithiri Sathi", "celebrity"),
     ("18Kft7GnyJg", "@MyVillageShow", "Dhethadi Harika", "celebrity"),
     ("QearANwPILA", "@MyVillageShow", "Nagarjuna", "celebrity"),
