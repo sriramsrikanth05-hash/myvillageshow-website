@@ -1,5 +1,5 @@
 window.MVS_YT = {
-  "updated": "2026-10-22T20:42:02+00:00",
+  "updated": "2026-10-22T21:33:46+00:00",
   "channels": [
     {
       "id": "UCnprfRlJB7WE6zAEaOAfVYA",
@@ -57,21 +57,21 @@ window.MVS_YT = {
       "id": "4WD6ZqKE85w",
       "title": "Love Story | Part 02 | The Other Side | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-22T11:30:19+00:00",
-      "views": 88884,
+      "views": 91772,
       "short": false
     },
     {
       "id": "ZyUNfqY5siE",
       "title": "Dasara Paga | దసరా పగ | My Village Show | Gangavva | Chandu | Thirumal | Bathukamma | Dussehra",
       "published": "2026-10-15T12:11:02+00:00",
-      "views": 420733,
+      "views": 420951,
       "short": false
     },
     {
       "id": "4hPYiULUfzo",
       "title": "Love Story | Part 01| One Side | Village Love Story | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-07T12:00:26+00:00",
-      "views": 427888,
+      "views": 428041,
       "short": false
     },
     {
@@ -94,7 +94,7 @@ window.MVS_YT = {
       "id": "I4yek3WXtuU",
       "title": "బాగా ఆకలి గా ఉన్నది ... పొట్టు పొట్టు తిన్నాం ... #myvillageshow #food #gangavvacomedy",
       "published": "2026-10-16T02:30:07+00:00",
-      "views": 576945,
+      "views": 577247,
       "short": true
     },
     {
@@ -159,113 +159,145 @@ window.MVS_YT = {
       "id": "lnKCLgibhm8",
       "title": "Gangavva interview after biggboss season 8 |  Telugu Podcast | sriram srikanth",
       "seconds": 1810,
-      "views": 749580,
-      "published": "2024-11-16T11:25:29+00:00"
+      "views": 749581,
+      "published": "2024-11-16T11:25:29+00:00",
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "oJ7n7MVWfYE",
       "title": "టెస్లా కార్ తయారు చేసాం! 😱 | Telugu Experiments Sai యూట్యూబ్ జర్నీ PODCAST | My Village Show Vlogs",
       "seconds": 3493,
       "views": 515147,
-      "published": "2025-08-05T06:53:51+00:00"
+      "published": "2025-08-05T06:53:51+00:00",
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "29OgGrPw5EI",
       "title": "Mana Arogyam Mana Chetilone | Ft.Dr Vikrant Singh Thakur | My Village Show Podcast| Gangavva | Raju",
       "seconds": 9534,
       "views": 368216,
-      "published": "2026-08-09T04:54:42+00:00"
+      "published": "2026-08-09T04:54:42+00:00",
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "R4QeJtXXBN0",
       "title": "చిట్టీలు వేయడం కరెక్టేనా ? | What is SIP ? | Podcast with M. Ram Prasad garu | My Village show vlogs",
       "seconds": 5174,
       "views": 317206,
-      "published": "2025-01-03T12:30:07+00:00"
+      "published": "2025-01-03T12:30:07+00:00",
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "CBSZgwyAlJA",
       "title": "SPECIAL TALK TO PILLI TIRUPATI | HIS LIFE JOURNEY | MY VLLAGE SHOW PODCAST",
       "seconds": 4234,
       "views": 238408,
-      "published": "2026-04-25T20:42:02+00:00"
+      "published": "2026-04-25T21:33:43+00:00",
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "9HyszJ9_CW8",
       "title": "Shiva tho Chit Chat | Q and A | My Village Show vlogs",
       "published": "2022-01-29T09:18:55+00:00",
-      "views": 230846,
-      "seconds": 0
+      "views": 230868,
+      "seconds": 0,
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "BXPlZoXFq4E",
       "title": "Bigg Boss 8 గురించి గంగవ్వ కి ఎం తెలుసు ? | Gangavva Interview before Bigg boss",
       "published": "2024-10-09T05:39:04+00:00",
-      "views": 182163,
-      "seconds": 0
+      "views": 182164,
+      "seconds": 0,
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "OTfUyYA3XGw",
       "title": "Coding లేకుండా IT JOBS | Low Coding , High Salaries | Bhaskar Jogi Talks Reality!",
       "published": "2025-04-19T04:45:13+00:00",
       "views": 181042,
-      "seconds": 0
+      "seconds": 0,
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "4omNUL3nmwk",
       "title": "పల్లెటూరు లో రైతుల కోసం డ్రోన్ కంపెనీ |My village Show podcast | Vigneshwara Drones Santhosh Reddy ",
       "seconds": 5710,
       "views": 58728,
-      "published": "2026-09-01T12:16:18+00:00"
+      "published": "2026-09-01T12:16:18+00:00",
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "IZPrtnWtfvg",
       "title": "18 రోజుల్లో సినిమా చేశారు | Independent film making tips | Geometry box | My village show |",
       "published": "2022-04-13T12:59:30+00:00",
       "views": 54357,
-      "seconds": 0
+      "seconds": 0,
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "GZAOnuZeG_w",
       "title": "Financial Planning Tips for the Middle Class | Vanga Rajendra Prasad | My Village Show Podcast",
       "seconds": 5287,
       "views": 53404,
-      "published": "2025-06-26T01:53:05+00:00"
+      "published": "2025-06-26T01:53:05+00:00",
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "-r2ATs8wAQw",
       "title": "Gangavva Childhood | My Village Show Podcast | Raju | Gangavva",
       "seconds": 3648,
-      "views": 45745,
-      "published": "2026-05-05T04:35:02+00:00"
+      "views": 45746,
+      "published": "2026-05-05T04:35:02+00:00",
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "Bb2Ji_g_TvA",
       "title": "గవర్నమెంట్ టీచర్ నుంచి యూట్యూబర్ వరకు | eGURUm TV Naresh | Telugu Podcast | My Village Show Vlogs",
       "seconds": 5825,
       "views": 23313,
-      "published": "2025-07-11T14:16:49+00:00"
+      "published": "2025-07-11T14:16:49+00:00",
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "6Hj9V7_U98s",
       "title": "విలేజ్ కి లైబ్రరీ, క్రీడ స్థలం అవసరమా ? | Podcast with Sriram Mondaiah | my village show vlogs",
       "published": "2024-12-27T06:31:00+00:00",
       "views": 13249,
-      "seconds": 0
+      "seconds": 0,
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "Wcc22EVOJKY",
       "title": "సినిమా తీయాలంటే కొత్త డైరెక్టర్స్ ఏం చేయాలి? Life Story of Raj Rachakonda | Mallesham movie Director",
       "published": "2025-07-03T09:33:02+00:00",
       "views": 10841,
-      "seconds": 0
+      "seconds": 0,
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
     {
       "id": "bJgkGqG3w-s",
       "title": "Oracle Layoffs: What Now for Indian Tech? | BHASKAR JOGI | GO ONLINE TRAININGS | PODCAST",
       "seconds": 3981,
-      "views": 10305,
-      "published": "2026-04-25T20:42:02+00:00"
+      "views": 10308,
+      "published": "2026-04-25T21:33:43+00:00",
+      "channel": "My Village Show Vlogs",
+      "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     }
   ]
 };
