@@ -426,7 +426,7 @@
   /* ---------- Cursor spotlight on cards ---------- */
   function initSpotlight() {
     if (!window.matchMedia || !window.matchMedia("(hover: hover)").matches) return;
-    $$(".pillar, .quote-card, .ch, .headlines, .facts div").forEach(function (card) {
+    $$(".pillar, .quote-card, .ch, .headlines, .facts div, .impact-card").forEach(function (card) {
       card.addEventListener("pointermove", function (e) {
         var r = card.getBoundingClientRect();
         card.style.setProperty("--mx", (e.clientX - r.left) + "px");

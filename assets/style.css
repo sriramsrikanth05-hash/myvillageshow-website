@@ -514,6 +514,33 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
   .pod-item img { width: 84px; }
 }
 
+/* ---------- Social responsibility ---------- */
+.impact { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.impact-intro { position: sticky; top: calc(var(--nav-h) + 2rem); display: flex; flex-direction: column; align-items: flex-start; }
+.impact-intro h2 { margin-bottom: 1.2rem; }
+.impact-intro > p:not(.kicker) { font-size: 1.08rem; max-width: 46ch; }
+.impact-intro strong { color: var(--fg-strong); }
+.impact-figures { display: grid; gap: .8rem; margin-top: 2rem; width: 100%; max-width: 460px; }
+.impact-figures div { display: grid; grid-template-columns: 4.2rem 1fr; gap: 1rem; align-items: center; padding: 1rem 1.2rem; border-radius: var(--radius); background: rgb(var(--leaf-rgb) / .08); border: 1px solid rgb(var(--leaf-rgb) / .2); }
+.impact-figures strong { font-family: var(--display); font-size: 2.4rem; font-weight: 800; line-height: 1; color: var(--leaf); font-variant-numeric: tabular-nums; }
+.impact-figures span { font-size: .92rem; color: var(--fg); line-height: 1.4; }
+.impact-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.impact-card { display: flex; flex-direction: column; align-items: flex-start; gap: .55rem; padding: 1.4rem; border-radius: var(--radius); background-color: var(--surface); border: 1px solid var(--border); transition: transform .3s var(--ease), box-shadow .3s, border-color .3s; }
+.impact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgb(var(--leaf-rgb) / .45); }
+.impact-year { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; background: var(--leaf); color: var(--white); }
+.impact-card h3 { font-size: 1.15rem; line-height: 1.2; }
+.impact-card p { font-size: .93rem; color: var(--fg-muted); }
+.impact-card a { margin-top: auto; padding-top: .3rem; font-size: .88rem; font-weight: 600; color: var(--leaf); }
+.impact-card a:hover { text-decoration: underline; }
+
+@media (max-width: 1100px) { .impact-list { grid-template-columns: 1fr; } }
+@media (max-width: 880px) {
+  .impact { grid-template-columns: 1fr; }
+  .impact-intro { position: static; }
+  .impact-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) { .impact-list { grid-template-columns: 1fr; } }
+
 /* ---------- Motion & interaction ---------- */
 /* Scroll progress */
 .progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 70; pointer-events: none; }
@@ -538,7 +565,7 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
 .btn-primary:hover::after { transform: translateX(120%); }
 
 /* Cursor spotlight on cards (position set from JS) */
-.pillar, .quote-card:not(.quote-card-dark), .ch:not(.ch-main), .headlines, .facts div {
+.pillar, .quote-card:not(.quote-card-dark), .ch:not(.ch-main), .headlines, .facts div, .impact-card {
   background-image: radial-gradient(420px circle at var(--mx, -999px) var(--my, -999px), rgb(var(--tone-rgb) / .1), transparent 45%);
 }
 
