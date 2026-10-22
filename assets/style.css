@@ -237,8 +237,9 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
 .facts dd { font-family: var(--display); font-size: 1.15rem; font-weight: 700; color: var(--fg-strong); }
 
 /* ---------- Story ---------- */
-.story-top { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
-.story-top h2 { margin-bottom: 1rem; }
+.story { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.story-side { position: sticky; top: calc(var(--nav-h) + 2rem); }
+.story-side h2 { margin-bottom: 1rem; }
 .story-intro { font-size: 1.1rem; max-width: 42ch; margin-bottom: 2rem; }
 .story-film { position: relative; aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; background: var(--ink-3); box-shadow: var(--shadow); }
 .story-film img, .story-film iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
@@ -250,25 +251,15 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
 .story-film-cap b { font-family: var(--display); font-size: 1.15rem; }
 .story-film.playing::after, .story-film.playing .story-play, .story-film.playing .story-film-cap { display: none; }
 .story-film.playing iframe { z-index: 3; }
-/* Winding road timeline (the curve itself is drawn by main.js through each .road-year) */
-.road { position: relative; margin-top: clamp(3.5rem, 7vw, 6rem); --swing: 60px; --node: 76px; }
-.road-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.road-track { fill: none; stroke: rgb(var(--ink-rgb) / .09); stroke-width: 18; stroke-linecap: round; }
-.road-dash { fill: none; stroke: var(--white); stroke-width: 2; stroke-dasharray: 10 12; stroke-linecap: round; opacity: .9; }
-.road-fill { fill: none; stroke: var(--orange); stroke-width: 5; stroke-linecap: round; }
-.road-list { list-style: none; position: relative; display: grid; gap: clamp(1.4rem, 3vw, 2.4rem); }
-.road-step { display: grid; grid-template-columns: minmax(0, 1fr) 200px minmax(0, 1fr); align-items: center; }
-.road-year { grid-column: 2; grid-row: 1; justify-self: center; z-index: 1; width: var(--node); height: var(--node); border-radius: 50%; display: grid; place-items: center; text-align: center; font-family: var(--display); font-weight: 800; font-size: 1.02rem; letter-spacing: -.02em; line-height: 1.05; padding: .4rem; color: var(--fg-strong); background: var(--surface); border: 3px solid var(--border-strong); box-shadow: 0 10px 24px -12px rgb(var(--ink-rgb) / .4); transform: translateX(var(--x, 0)); transition: background .45s, border-color .45s, box-shadow .45s, color .45s, transform .45s var(--ease-out); }
-.road-step:nth-child(odd) .road-year { --x: calc(var(--swing) * -1); }
-.road-step:nth-child(even) .road-year { --x: var(--swing); }
-.road-step.on .road-year { background: var(--gradient-brand); border-color: transparent; color: var(--on-accent); box-shadow: 0 0 0 8px rgb(var(--marigold-rgb) / .25), 0 14px 30px -12px rgb(var(--orange-rgb) / .7); transform: translateX(var(--x, 0)) scale(1.06); }
-.road-card { grid-row: 1; grid-column: 1; position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.6rem; box-shadow: 0 18px 40px -28px rgb(var(--ink-rgb) / .45); transition: border-color .45s, box-shadow .45s; }
-.road-step:nth-child(even) .road-card { grid-column: 3; }
-.road-step.on .road-card { border-color: rgb(var(--orange-rgb) / .45); }
-.road-label { display: none; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: .3rem; }
-.road-card h3 { font-size: clamp(1.25rem, 2vw, 1.55rem); margin-bottom: .5rem; }
-.road-card p { color: var(--fg-muted); }
-.road-card em { color: var(--fg-strong); }
+.timeline { list-style: none; position: relative; padding-left: 2.2rem; }
+.timeline::before { content: ""; position: absolute; left: 7px; top: .5rem; bottom: .5rem; width: 2px; background: linear-gradient(var(--highlight), var(--accent) 60%, var(--border)); }
+.timeline li { position: relative; padding-bottom: 2.4rem; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before { content: ""; position: absolute; left: calc(-2.2rem + 1px); top: .35rem; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); }
+.tl-mark { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: .35rem; }
+.timeline h3 { font-size: clamp(1.3rem, 2.2vw, 1.65rem); margin-bottom: .5rem; }
+.timeline p { color: var(--fg-muted); max-width: 56ch; }
+.timeline em { color: var(--fg-strong); }
 
 /* ---------- What we do ---------- */
 .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
@@ -579,6 +570,10 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
 }
 
 /* Timeline fills in as you read */
+.timeline::before { background: var(--border-strong); }
+.timeline::after { content: ""; position: absolute; left: 7px; top: .5rem; bottom: .5rem; width: 2px; background: linear-gradient(var(--marigold), var(--orange)); transform-origin: top; transform: scaleY(var(--p, 0)); }
+.timeline li::before { z-index: 1; border-color: var(--border-strong); transition: border-color .4s, background .4s, box-shadow .4s; }
+.timeline li.on::before { border-color: var(--accent); background: var(--highlight); box-shadow: 0 0 0 6px rgb(var(--marigold-rgb) / .25); }
 
 /* Back to top */
 .totop { position: fixed; right: 1.4rem; bottom: 1.4rem; z-index: 40; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); box-shadow: var(--shadow); opacity: 0; transform: translateY(12px) scale(.9); pointer-events: none; transition: opacity .3s, transform .3s var(--ease-out), background .2s; }
@@ -608,12 +603,8 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
   .hero-brand img { display: none; }
   .featured-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
   .featured-label { grid-column: 1 / -1; }
-  .story-top { grid-template-columns: 1fr; }
-  /* Road winds gently down the left edge; cards on the right */
-  .road { --swing: 9px; --node: 58px; }
-  .road-step { grid-template-columns: 76px minmax(0, 1fr); }
-  .road-year { grid-column: 1; font-size: .82rem; }
-  .road-card, .road-step:nth-child(even) .road-card { grid-column: 2; }
+  .story { grid-template-columns: 1fr; }
+  .story-side { position: static; }
   .founder { grid-template-columns: 200px 1fr; }
   .press-highlights { grid-template-columns: 1fr 1fr; }
   .menu-open .nav { background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
