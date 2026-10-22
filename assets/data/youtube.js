@@ -1,5 +1,5 @@
 window.MVS_YT = {
-  "updated": "2026-10-22T20:03:55+00:00",
+  "updated": "2026-10-22T20:05:28+00:00",
   "channels": [
     {
       "id": "UCnprfRlJB7WE6zAEaOAfVYA",
@@ -59,14 +59,14 @@ window.MVS_YT = {
       "id": "ZyUNfqY5siE",
       "title": "Dasara Paga | దసరా పగ | My Village Show | Gangavva | Chandu | Thirumal | Bathukamma | Dussehra",
       "published": "2026-10-15T12:11:02+00:00",
-      "views": 420419,
+      "views": 420484,
       "short": false
     },
     {
       "id": "4hPYiULUfzo",
       "title": "Love Story | Part 01| One Side | Village Love Story | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-07T12:00:26+00:00",
-      "views": 427684,
+      "views": 427741,
       "short": false
     },
     {
@@ -110,7 +110,7 @@ window.MVS_YT = {
       "id": "eAVNEDtGfko",
       "title": "దెయ్యాన్ని చూసి భయపడ్డ చందు ! | chandu | myvillageshow | gangavva |  #myvillageshow #comedy",
       "published": "2026-10-06T00:30:34+00:00",
-      "views": 19929,
+      "views": 19922,
       "short": true
     },
     {
@@ -131,7 +131,7 @@ window.MVS_YT = {
       "id": "4jyIvH-4IAw",
       "title": "గంగవ్వ దెయ్యమా ?.. కాదా?.. #shorts #chandu #gangavva #raju",
       "published": "2026-10-02T05:35:42+00:00",
-      "views": 89392,
+      "views": 89387,
       "short": true
     },
     {
