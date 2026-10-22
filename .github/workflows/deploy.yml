@@ -42,6 +42,13 @@ jobs:
         run: |
           mkdir _site
           cp -R index.html assets CNAME _site/
+          # Give the stylesheet, script and data a new version on every deploy, so browsers
+          # never pair a fresh page with an old cached stylesheet.
+          v="${{ github.run_id }}"
+          sed -i -e "s#assets/style.css\"#assets/style.css?v=$v\"#" \
+                 -e "s#assets/main.js\"#assets/main.js?v=$v\"#" \
+                 -e "s#assets/data/youtube.js\"#assets/data/youtube.js?v=$v\"#" _site/index.html
+          grep -o 'assets/[a-z/]*\.\(css\|js\)?v=[0-9]*' _site/index.html
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
