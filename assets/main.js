@@ -244,7 +244,7 @@
       var btn = el("button", { class: "pod-item", type: "button" }, [
         el("span", { class: "pod-rank", text: String(i + 1), "aria-hidden": "true" }),
         thumb(el("img", { alt: "", loading: "lazy" }), p.id, ["mqdefault"]),
-        el("span", {}, [el("b", { text: cleanTitle(p.title) }), el("small", { text: shortViews(p.views) + " views · " + duration(p.seconds) })])
+        el("span", {}, [el("b", { text: cleanTitle(p.title) }), el("small", { text: shortViews(p.views) + " views" + (p.seconds ? " · " + duration(p.seconds) : "") })])
       ]);
       btn.dataset.id = p.id;
       btn.addEventListener("click", function () { playAndShow(p, "#" + (i + 1) + " most played"); });
