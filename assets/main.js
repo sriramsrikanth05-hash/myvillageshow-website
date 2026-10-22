@@ -222,8 +222,14 @@
     var latest = eps.slice().sort(function (a, b) { return new Date(b.published) - new Date(a.published); });
     var NEW_DAYS = 45;
 
+    // Episodes come from all our channels; name the channel when it isn't the podcast's usual home
+    var counts = {};
+    eps.forEach(function (p) { if (p.channel) counts[p.channel] = (counts[p.channel] || 0) + 1; });
+    var home = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; })[0];
+    function fromOther(p) { return p.channel && p.channel !== home ? p.channel : ""; }
+
     function meta(p) {
-      return [timeAgo(p.published), p.views ? shortViews(p.views) + " views" : "", p.seconds ? duration(p.seconds) : ""].filter(Boolean).join(" · ");
+      return [fromOther(p), timeAgo(p.published), p.views ? shortViews(p.views) + " views" : "", p.seconds ? duration(p.seconds) : ""].filter(Boolean).join(" · ");
     }
     function isNew(p) { return (Date.now() - new Date(p.published)) / 864e5 < NEW_DAYS; }
 
@@ -254,7 +260,7 @@
       var btn = el("button", { class: "pod-item", type: "button" }, [
         el("span", { class: "pod-rank", text: String(i + 1), "aria-hidden": "true" }),
         thumb(el("img", { alt: "", loading: "lazy" }), p.id, ["mqdefault"]),
-        el("span", {}, [el("b", { text: cleanTitle(p.title) }), el("small", { text: shortViews(p.views) + " views" + (p.seconds ? " · " + duration(p.seconds) : "") })])
+        el("span", {}, [el("b", { text: cleanTitle(p.title) }), el("small", { text: [fromOther(p), shortViews(p.views) + " views", p.seconds ? duration(p.seconds) : ""].filter(Boolean).join(" · ") })])
       ]);
       btn.dataset.id = p.id;
       btn.addEventListener("click", function () { playAndShow(p, "#" + (i + 1) + " most played"); });

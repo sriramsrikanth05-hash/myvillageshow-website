@@ -22,10 +22,10 @@ CHANNELS = [
 ]
 LATEST_VIDEOS = 9
 
-# The podcast lives on the Vlogs channel. Its official playlist isn't always kept up to date, so episodes
-# are also picked up from the channel's newest uploads and its "podcast" search.
-PODCAST_CHANNEL = "@MyVillageShowVlogs"
+# Podcast episodes are picked up from EVERY channel in CHANNELS: each channel's "podcast" search and newest
+# uploads, plus the official podcast playlist (on the Vlogs channel), which isn't always kept up to date.
 PODCAST_PLAYLIST = "PLqwv8aBwfwiq3aCGTua3nvi_FXfnRzx1g"
+PODCAST_PLAYLIST_CHANNEL = "@MyVillageShowVlogs"
 PODCAST_MIN_SECONDS = 20 * 60                 # full episodes only: skips trailers, clips and Shorts
 PODCAST_EXCLUDE = ["anil geela", "అనిల్ జీల"]  # people no longer featured on the site
 PODCAST_MAX = 16
@@ -174,25 +174,30 @@ def search_items(handle, query):
         }
 
 
-def podcasts(channel_id):
+def podcasts(channels):
     eps = {}
     def allowed(title):
         return not any(word in title.lower() for word in PODCAST_EXCLUDE)
+    def tag(it, ch):
+        return {**it, "channel": ch["title"], "channel_url": ch["url"]}
 
-    # 1. The channel's podcast search gives each episode's length, views and rough age.
-    try:
-        for it in search_items(PODCAST_CHANNEL, "podcast"):
-            if it["id"] and "podcast" in it["title"].lower() and allowed(it["title"]):
-                eps[it["id"]] = it
-    except Exception as e:
-        print(f"  podcast search failed: {e}", file=sys.stderr)
+    for ch in channels:
+        # 1. The channel's podcast search gives each episode's length, views and rough age.
+        try:
+            for it in search_items(ch["handle"], "podcast"):
+                if it["id"] and "podcast" in it["title"].lower() and allowed(it["title"]):
+                    eps.setdefault(it["id"], tag(it, ch))
+        except Exception as e:
+            print(f"  podcast search failed for {ch['handle']}: {e}", file=sys.stderr)
 
     # 2. The feeds give exact upload dates. The official playlist also lists episodes whose titles
-    #    don't say "podcast"; the uploads feed catches new episodes before search does.
-    sources = [(f"https://www.youtube.com/feeds/videos.xml?playlist_id={PODCAST_PLAYLIST}", True)]
-    if channel_id:
-        sources.append((f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}", False))
-    for url, from_playlist in sources:
+    #    don't say "podcast"; each channel's uploads feed catches new episodes before search does.
+    sources = []
+    playlist_ch = next((c for c in channels if c["handle"] == PODCAST_PLAYLIST_CHANNEL), None)
+    if playlist_ch:
+        sources.append((f"https://www.youtube.com/feeds/videos.xml?playlist_id={PODCAST_PLAYLIST}", True, playlist_ch))
+    sources += [(f"https://www.youtube.com/feeds/videos.xml?channel_id={c['id']}", False, c) for c in channels if c.get("id")]
+    for url, from_playlist, ch in sources:
         try:
             for it in feed_entries(url):
                 if not it["id"] or not allowed(it["title"]):
@@ -200,11 +205,11 @@ def podcasts(channel_id):
                 if it["id"] in eps:
                     eps[it["id"]].update(published=it["published"], views=max(it["views"], eps[it["id"]]["views"]))
                 elif from_playlist or ("podcast" in it["title"].lower() and not is_short(it["id"])):
-                    eps[it["id"]] = {**it, "seconds": 0}  # length unknown
+                    eps[it["id"]] = tag({**it, "seconds": 0}, ch)  # length unknown
         except Exception as e:
-            print(f"  podcast feed failed: {e}", file=sys.stderr)
+            print(f"  podcast feed failed for {ch['handle']}: {e}", file=sys.stderr)
 
-    # Full episodes only (a length of 0 means unknown, which is kept)
+    # Full episodes only: skips Shorts and short clips (a length of 0 means unknown, which is kept)
     episodes = [e for e in eps.values() if e["seconds"] == 0 or e["seconds"] >= PODCAST_MIN_SECONDS]
     episodes.sort(key=lambda e: e["views"], reverse=True)
     return episodes[:PODCAST_MAX]
@@ -233,8 +238,7 @@ def main():
     # Podcasts are optional: if they can't be fetched, keep the episodes from the last good run.
     pods = []
     try:
-        vlogs = next((c for c in channels if c["handle"] == PODCAST_CHANNEL), {})
-        pods = podcasts(vlogs.get("id", ""))
+        pods = podcasts(channels)
         print(f"{len(pods)} podcast episodes")
     except Exception as e:
         print(f"Podcast fetch failed: {e}", file=sys.stderr)

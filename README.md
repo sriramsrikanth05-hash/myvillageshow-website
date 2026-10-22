@@ -76,6 +76,7 @@ sequenceDiagram
 - **Shorts** go to the *Shorts* row (up to 9).
 - The **Top 10** ranks episodes and Shorts together by views.
 - New videos come from the **main My Village Show channel only**. The other four channels supply their subscriber and video counts.
+- **Podcast episodes** are picked up from **all five channels**: each channel's "podcast" search and newest uploads, plus the official *My Village Show Podcast* playlist. Only full episodes (20+ minutes) are kept, so Shorts and clips are skipped.
 - **To publish a new upload right away:** Actions → *Update YouTube data & deploy* → **Run workflow**. It's live in about a minute.
 - **If YouTube can't be reached**, the site keeps the copy of `assets/data/youtube.js` stored in the repository, so it never breaks.
 
