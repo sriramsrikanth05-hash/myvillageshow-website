@@ -296,7 +296,7 @@
     var player = $("#cel-player");
     talks.sort(function (a, b) { return b.views - a.views; });
 
-    function label(t) { return t.kind === "official" ? "Official" : ""; }
+    function label(t) { return { official: "Official", leader: "Leader" }[t.kind] || ""; }
     function meta(t) {
       return [label(t), t.channel, t.views ? shortViews(t.views) + " views" : "", t.seconds ? duration(t.seconds) : ""].filter(Boolean).join(" · ");
     }
@@ -342,7 +342,7 @@
         el("span", {}, [el("b", { text: cleanTitle(t.title) }), el("small", { text: [t.channel, t.views ? shortViews(t.views) + " views" : ""].filter(Boolean).join(" · ") })])
       ]);
       btn.dataset.id = t.id;
-      btn.addEventListener("click", function () { playAndShow(t, label(t) ? "Official" : "Celebrity talk"); });
+      btn.addEventListener("click", function () { playAndShow(t, label(t) || "Celebrity talk"); });
       $("#cel-all").appendChild(btn);
     });
 
