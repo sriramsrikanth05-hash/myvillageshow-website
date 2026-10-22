@@ -234,7 +234,7 @@
     function isNew(p) { return (Date.now() - new Date(p.published)) / 864e5 < NEW_DAYS; }
 
     function load(p, badge, autoplay) {
-      $$(".pod-item, #pod-latest .pl-item").forEach(function (b) { b.classList.toggle("active", b.dataset.id === p.id); });
+      $$(".pod-item, #pod-latest .pl-item, #pod-celeb .pl-item").forEach(function (b) { b.classList.toggle("active", b.dataset.id === p.id); });
       player.classList.remove("playing");
       $$("iframe", player).forEach(function (f) { f.remove(); });
       thumb($("#pod-thumb"), p.id);
@@ -280,6 +280,20 @@
       btn.addEventListener("click", function () { playAndShow(p, p === latest[0] ? (isNew(p) ? "New episode" : "Latest episode") : "Podcast"); });
       latestRail.appendChild(btn);
     });
+
+    // Celebrity specials from KalliValli: most viewed first, played in the same player
+    (data.celebrity || []).forEach(function (p) {
+      var inner = [thumb(el("img", { alt: "", loading: "lazy" }), p.id, ["mqdefault"])];
+      if (p.seconds) inner.push(el("span", { class: "pod-len", text: duration(p.seconds) }));
+      var btn = el("button", { class: "pl-item", type: "button" }, [
+        el("span", { class: "pl-thumb" }, inner),
+        el("span", {}, [el("b", { text: cleanTitle(p.title) }), el("small", { text: [p.channel, shortViews(p.views) + " views", p.seconds ? duration(p.seconds) : ""].filter(Boolean).join(" · ") })])
+      ]);
+      btn.dataset.id = p.id;
+      btn.addEventListener("click", function () { playAndShow(p, "Celebrity special"); });
+      $("#pod-celeb").appendChild(btn);
+    });
+    if ((data.celebrity || []).length) $("#celeb-wrap").hidden = false;
 
     $("#pod-play").addEventListener("click", play);
     // Like "Latest from the village": the newest episode is always featured

@@ -1,5 +1,5 @@
 window.MVS_YT = {
-  "updated": "2026-10-22T21:33:46+00:00",
+  "updated": "2026-10-22T21:40:03+00:00",
   "channels": [
     {
       "id": "UCnprfRlJB7WE6zAEaOAfVYA",
@@ -57,21 +57,21 @@ window.MVS_YT = {
       "id": "4WD6ZqKE85w",
       "title": "Love Story | Part 02 | The Other Side | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-22T11:30:19+00:00",
-      "views": 91772,
+      "views": 91991,
       "short": false
     },
     {
       "id": "ZyUNfqY5siE",
       "title": "Dasara Paga | దసరా పగ | My Village Show | Gangavva | Chandu | Thirumal | Bathukamma | Dussehra",
       "published": "2026-10-15T12:11:02+00:00",
-      "views": 420951,
+      "views": 420960,
       "short": false
     },
     {
       "id": "4hPYiULUfzo",
       "title": "Love Story | Part 01| One Side | Village Love Story | My Village Show | Gangavva | Raju | Chandhu",
       "published": "2026-10-07T12:00:26+00:00",
-      "views": 428041,
+      "views": 428049,
       "short": false
     },
     {
@@ -94,7 +94,7 @@ window.MVS_YT = {
       "id": "I4yek3WXtuU",
       "title": "బాగా ఆకలి గా ఉన్నది ... పొట్టు పొట్టు తిన్నాం ... #myvillageshow #food #gangavvacomedy",
       "published": "2026-10-16T02:30:07+00:00",
-      "views": 577247,
+      "views": 577276,
       "short": true
     },
     {
@@ -196,7 +196,7 @@ window.MVS_YT = {
       "title": "SPECIAL TALK TO PILLI TIRUPATI | HIS LIFE JOURNEY | MY VLLAGE SHOW PODCAST",
       "seconds": 4234,
       "views": 238408,
-      "published": "2026-04-25T21:33:43+00:00",
+      "published": "2026-04-25T21:39:59+00:00",
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
     },
@@ -295,9 +295,119 @@ window.MVS_YT = {
       "title": "Oracle Layoffs: What Now for Indian Tech? | BHASKAR JOGI | GO ONLINE TRAININGS | PODCAST",
       "seconds": 3981,
       "views": 10308,
-      "published": "2026-04-25T21:33:43+00:00",
+      "published": "2026-04-25T21:39:59+00:00",
       "channel": "My Village Show Vlogs",
       "channel_url": "https://www.youtube.com/@MyVillageShowVlogs"
+    }
+  ],
+  "celebrity": [
+    {
+      "id": "s7ls0j-ZLRI",
+      "title": "Gangavva Biggboss Experience |  Full Interview | My Village Show",
+      "views": 3200000,
+      "published": "2020-10-23T21:40:02+00:00",
+      "seconds": 3153,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "lwZjFfBu-bQ",
+      "title": "Feast with the Doctor | Chandu | Dr. Vikranthsing Thakur | Village food | kallivalli | myvillageshow",
+      "views": 1800000,
+      "published": "2026-08-23T21:40:02+00:00",
+      "seconds": 1128,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "d5UnrZoO3YU",
+      "title": "బొందలో చికెన్ ? Vishnupriya , Maanas Daawath | Full comedy | My village show | Chicken food video |",
+      "views": 1400000,
+      "published": "2023-10-23T21:40:02+00:00",
+      "seconds": 1117,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "YJloZZUrBLQ",
+      "title": "కుండ మటన్ గుడాలు దావత్  with Writer Padmabhushan team | Suhas | Anji mama | village cooking",
+      "views": 1300000,
+      "published": "2023-10-23T21:40:02+00:00",
+      "seconds": 715,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "th6yhmLZJzQ",
+      "title": "రొయ్యల ధమ్ బిర్యానీ హిడింబ టీం | My Village Show | KalliValli | Ashwin Babu | Gangavva | Chandu",
+      "views": 1200000,
+      "published": "2023-10-23T21:40:02+00:00",
+      "seconds": 1158,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "QgHbpr_ouU4",
+      "title": "గంగవ్వ సెలూన్ ft VJ Sunny | Raju | Gangavva",
+      "views": 834000,
+      "published": "2025-10-22T21:40:02+00:00",
+      "seconds": 889,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "oY8UyuOf9T0",
+      "title": "Naatu Kodi Chicken Cooking with RK Naidu (Sagar Anna), Gangavva & Raju | KalliValli",
+      "views": 831000,
+      "published": "2025-10-22T21:40:02+00:00",
+      "seconds": 1014,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "ZS1Np_f-eH8",
+      "title": "నాటు కోడి లైట్ గ్రీన్ చెమెన్ చికెన్ ft. Bubble Gum team | Village cooking | My village show",
+      "views": 786000,
+      "published": "2024-10-22T21:40:02+00:00",
+      "seconds": 1925,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "IR1_4lP7j3k",
+      "title": "పటియాలా చికెన్ with Sagileti katha movie team | Navadeep | Village cooking | My Village show |",
+      "views": 744000,
+      "published": "2023-10-23T21:40:02+00:00",
+      "seconds": 1070,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "hnzRM32nmW4",
+      "title": "Telangana Fish TIkka Ft. Nakka Srikanth | My village Show Cooking Daawath",
+      "views": 425000,
+      "published": "2023-10-23T21:40:03+00:00",
+      "seconds": 866,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "8pkp-lpMJP0",
+      "title": "చంపారన్ కుండ మటన్ with Spark Movie team | Gangavva | Anji Mama | Village Cooking",
+      "views": 295000,
+      "published": "2024-10-22T21:40:03+00:00",
+      "seconds": 1383,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
+    },
+    {
+      "id": "OKDxE0Wtuys",
+      "title": "Chatting with Gangavva | Gangavva | Siddu Jonnalagadda",
+      "views": 53000,
+      "published": "2025-10-22T21:40:03+00:00",
+      "seconds": 772,
+      "channel": "KalliValli",
+      "channel_url": "https://www.youtube.com/@kallivalli450"
     }
   ]
 };

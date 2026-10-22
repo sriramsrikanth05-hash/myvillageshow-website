@@ -29,6 +29,24 @@ PODCAST_PLAYLIST_CHANNEL = "@MyVillageShowVlogs"
 PODCAST_MIN_SECONDS = 20 * 60                 # full episodes only: skips trailers, clips and Shorts
 PODCAST_EXCLUDE = ["anil geela", "అనిల్ జీల"]  # people no longer featured on the site
 PODCAST_MAX = 16
+
+# Celebrity specials from KalliValli, shown in the Podcast section. Chosen by hand (most-viewed celebrity
+# videos); titles, views and lengths are refreshed from the channel's "Popular" list on every run.
+CELEBRITY_CHANNEL = "@kallivalli450"
+CELEBRITY_SPECIALS = [
+    "s7ls0j-ZLRI",  # Gangavva Bigg Boss Experience, full interview
+    "lwZjFfBu-bQ",  # Feast with the Doctor: Dr. Vikrant Singh Thakur
+    "d5UnrZoO3YU",  # Vishnupriya, Maanas daawath
+    "YJloZZUrBLQ",  # Writer Padmabhushan team, Suhas
+    "th6yhmLZJzQ",  # Hidimba team, Ashwin Babu
+    "QgHbpr_ouU4",  # VJ Sunny
+    "oY8UyuOf9T0",  # RK Naidu (Sagar)
+    "ZS1Np_f-eH8",  # Bubble Gum movie team
+    "IR1_4lP7j3k",  # Sagileti Katha team, Navadeep
+    "hnzRM32nmW4",  # Nakka Srikanth
+    "8pkp-lpMJP0",  # Spark movie team
+    "OKDxE0Wtuys",  # Siddu Jonnalagadda
+]
 UA = {"User-Agent": "Mozilla/5.0 (Macintosh) AppleWebKit/537.36 Chrome/120 Safari/537.36",
       "Accept-Language": "en-US,en;q=0.9"}
 
@@ -215,6 +233,74 @@ def podcasts(channels):
     return episodes[:PODCAST_MAX]
 
 
+def count(text):
+    # "5.1M views" -> 5100000, "834K views" -> 834000, "1,234 views" -> 1234
+    m = re.search(r"([\d.,]+)\s*([KMB])?", text or "")
+    if not m:
+        return 0
+    return int(float(m.group(1).replace(",", "")) * {"K": 1e3, "M": 1e6, "B": 1e9}.get(m.group(2) or "", 1))
+
+
+def popular_videos(handle, pages=6):
+    # A channel's Videos tab sorted by "Popular", read through the same API the YouTube website uses.
+    html = fetch(f"https://www.youtube.com/{handle}/videos").read().decode()
+    key = re.search(r'"INNERTUBE_API_KEY":"([^"]+)"', html).group(1)
+    version = re.search(r'"INNERTUBE_CLIENT_VERSION":"([^"]+)"', html).group(1)
+    token = re.search(r'"chipViewModel":\{"text":"Popular".*?"token":"([^"]+)"', html).group(1)
+    found = {}
+    for _ in range(pages):
+        body = json.dumps({"context": {"client": {"clientName": "WEB", "clientVersion": version, "hl": "en"}},
+                           "continuation": token}).encode()
+        req = urllib.request.Request(f"https://www.youtube.com/youtubei/v1/browse?key={key}", data=body,
+                                     headers={**UA, "Content-Type": "application/json"})
+        data = json.load(urllib.request.urlopen(req, timeout=20))
+        for r in find_all(data, "lockupViewModel"):
+            text = json.dumps(r, ensure_ascii=False)
+            title = re.search(r'"title": \{"content": "((?:[^"\\]|\\.)+)"', text)
+            meta = re.findall(r'"text": \{"content": "([^"]+)"', text)
+            length = re.search(r'"text": "(\d+:\d+(?::\d+)?)"', text)
+            if r.get("contentId") and title:
+                found[r["contentId"]] = {
+                    "id": r["contentId"],
+                    "title": json.loads(f'"{title.group(1)}"'),
+                    "views": count(next((m for m in meta if "view" in m), "")),
+                    "published": approx_date(next((m for m in meta if "ago" in m), "")),
+                    "seconds": to_seconds(length.group(1) if length else ""),
+                }
+        tokens = list(find_all(data, "continuationCommand"))
+        if not tokens:
+            break
+        token = tokens[-1]["token"]
+    return found
+
+
+def celebrity_specials(channels):
+    ch = next((c for c in channels if c["handle"] == CELEBRITY_CHANNEL), None)
+    if not ch:
+        return []
+    previous = {v["id"]: v for v in previous_data().get("celebrity", [])}
+    try:
+        popular = popular_videos(CELEBRITY_CHANNEL)
+    except Exception as e:
+        print(f"  celebrity specials: popular list failed: {e}", file=sys.stderr)
+        popular = {}
+    out = []
+    for vid in CELEBRITY_SPECIALS:
+        v = popular.get(vid) or previous.get(vid)  # keep the last good numbers if this run missed it
+        if v:
+            out.append({**v, "channel": ch["title"], "channel_url": ch["url"]})
+    out.sort(key=lambda v: v["views"], reverse=True)
+    return out
+
+
+def previous_data():
+    try:
+        text = OUT.read_text()
+        return json.loads(text[text.index("{"):text.rindex("}") + 1])
+    except Exception:
+        return {}
+
+
 def previous_podcasts():
     try:
         text = OUT.read_text()
@@ -245,6 +331,15 @@ def main():
     if not pods:
         pods = previous_podcasts()
 
+    celeb = []
+    try:
+        celeb = celebrity_specials(channels)
+        print(f"{len(celeb)} celebrity specials")
+    except Exception as e:
+        print(f"Celebrity specials failed: {e}", file=sys.stderr)
+    if not celeb:
+        celeb = previous_data().get("celebrity", [])
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     # A .js file (not .json) so the site also works when opened straight from disk.
     OUT.write_text("window.MVS_YT = " + json.dumps({
@@ -253,6 +348,7 @@ def main():
         "videos": [v for v in vids if not v["short"]][:LATEST_VIDEOS],
         "shorts": [v for v in vids if v["short"]][:LATEST_VIDEOS],
         "podcasts": pods,
+        "celebrity": celeb,
     }, ensure_ascii=False, indent=2) + ";\n")
     print(f"wrote {OUT.relative_to(ROOT)}")
 

@@ -509,6 +509,7 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.9rem); font-weight: 800; letter-
 .pl-thumb .pod-len { position: absolute; right: .5rem; bottom: .5rem; z-index: 1; font-size: .72rem; font-weight: 700; padding: .15rem .45rem; border-radius: 6px; background: rgb(var(--night-rgb) / .8); color: var(--white); font-variant-numeric: tabular-nums; }
 .pl-thumb .pod-new { position: absolute; left: .5rem; top: .5rem; z-index: 1; font-size: .66rem; font-weight: 700; letter-spacing: .1em; padding: .2rem .5rem; border-radius: 6px; background: var(--plum); color: var(--white); }
 #podcast .pl-item.active .pl-thumb::before { display: none; }
+.celeb-mark { background: var(--plum); color: var(--white); }
 
 @media (max-width: 880px) {
   .pod-feature { grid-template-columns: 1fr; }
