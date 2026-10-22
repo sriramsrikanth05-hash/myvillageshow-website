@@ -1,46 +1,144 @@
 # myvillageshow.com
 
-Static website for My Village Show — plain HTML/CSS/JS, no build step.
+Official website of **My Village Show**, the first village-based Telugu YouTube channel (Lambadipally, Telangana, since 2012).
 
-## Run locally
+- **Live site:** https://myvillageshow.com
+- **Stack:** plain HTML, CSS and JavaScript, with no build step
+- **Hosting:** GitHub Pages (free, HTTPS included). The domain is registered at GoDaddy.
+- **YouTube data:** refreshed automatically every 3 hours
+
+---
+
+## How it works, end to end
+
+```mermaid
+flowchart LR
+    Mac["Your Mac<br/>(VS Code)"] -->|"pull request → merge"| Repo["GitHub repository<br/>main branch"]
+    Repo -->|"starts"| Robot["GitHub Actions<br/>Update YouTube data & deploy"]
+    Clock["Every 3 hours"] --> Robot
+    Button["Run workflow button"] --> Robot
+    Robot -->|"reads"| YT["YouTube<br/>5 channels"]
+    Robot -->|"publishes"| Pages["GitHub Pages<br/>185.199.108–111.153 · HTTPS"]
+    Visitor["Visitor's phone or laptop"] -->|"① where is myvillageshow.com?"| DNS["GoDaddy DNS"]
+    DNS -->|"at 185.199.x.153"| Visitor
+    Pages -->|"② the site"| Visitor
+    Visitor -->|"③ videos play"| YT
+```
+
+| Piece | What it does |
+|---|---|
+| **GitHub repository** | Stores every file and the full history, so any change can be undone. |
+| **GitHub Actions** | The robot in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). It refreshes the YouTube data and publishes the site. |
+| **GitHub Pages** | Hosts the site on GitHub's servers, with the HTTPS padlock. |
+| **GoDaddy DNS** | The address book. `myvillageshow.com` points to GitHub's servers (4 `A` records), and `www` is a `CNAME` to `sriramsrikanth05-hash.github.io`. |
+| **YouTube** | Source of the episodes, Shorts and subscriber counts. Videos stream from YouTube, not from GitHub. |
+
+The robot runs:
+1. after every merge into `main`;
+2. every 3 hours by itself, at 17 minutes past 00:00, 03:00, 06:00… UTC;
+3. whenever someone presses **Actions → Update YouTube data & deploy → Run workflow**.
+
+Only `index.html`, `assets/` and `CNAME` are published. `tools/`, this README and the workflow are not.
+
+---
+
+## How a new video reaches the site by itself
+
+Nobody has to do anything. After the team uploads to the main **@MyVillageShow** channel:
+
+```mermaid
+sequenceDiagram
+    participant Team
+    participant YT as YouTube
+    participant Bot as GitHub Actions
+    participant Pages as GitHub Pages
+    participant V as Visitor
+    Team->>YT: Upload a new episode or Short
+    Note over Bot: Wakes up within 3 hours
+    Bot->>YT: Read the channel feed (15 newest uploads)
+    Bot->>YT: Open youtube.com/shorts/VIDEO-ID for each upload
+    YT-->>Bot: Page opens = Short · redirects = episode
+    Bot->>YT: Read subscriber and video counts (all 5 channels)
+    Bot->>Bot: Write assets/data/youtube.js
+    Bot->>Pages: Publish the site with the fresh data
+    V->>Pages: Open myvillageshow.com
+    Pages-->>V: New episode in the hero card, player, Latest episodes and Top 10
+```
+
+| Step | Time |
+|---|---|
+| Upload on YouTube | any time |
+| Robot wakes up | within 3 hours |
+| Read the channel feed and sort episodes from Shorts | about 20 seconds |
+| Publish the site | about 30 seconds |
+
+- **Episodes** go to the hero card, the main player and *Latest episodes* (up to 9).
+- **Shorts** go to the *Shorts* row (up to 9).
+- The **Top 10** ranks episodes and Shorts together by views.
+- New videos come from the **main My Village Show channel only**. The other four channels supply their subscriber and video counts.
+- **To publish a new upload right away:** Actions → *Update YouTube data & deploy* → **Run workflow**. It's live in about a minute.
+- **If YouTube can't be reached**, the site keeps the copy of `assets/data/youtube.js` stored in the repository, so it never breaks.
+
+### What updates by itself, and what needs a change
+
+| Automatic, every 3 hours | Needs a pull request |
+|---|---|
+| New episodes and Shorts | Text: story, about, HRDC, press quotes |
+| View counts and the Top 10 | Team photos and press clippings |
+| Subscriber and video counts for all 5 channels | Adding or removing a channel (`CHANNELS` in [`tools/update_youtube.py`](tools/update_youtube.py)) |
+| Hero totals (subscribers, videos, channels) | The "1.1B+ views" figure |
+| Channel profile pictures | Colors, fonts and layout |
+
+---
+
+## Making a change
+
+`main` is protected. **Nobody can push to it directly**, admins included, so every change goes through a pull request.
+
+```sh
+git checkout main && git pull
+git checkout -b my-change          # 1. new branch
+# ...edit files, preview locally (see below)...
+git add -A && git commit -m "Describe the change"
+git push -u origin my-change       # 2. push the branch
+gh pr create --fill                # 3. open a pull request
+gh pr merge --squash --delete-branch   # 4. merge, and the site goes live in about a minute
+```
+
+You can also open and merge the pull request on github.com.
+
+### Preview locally
 
     python3 -m http.server 8080
 
-Then open http://localhost:8080
+Then open http://localhost:8080.
 
-## Refresh YouTube data (subscribers, latest videos, shorts)
+### Where things are
 
-    python3 tools/update_youtube.py
+| To change | Edit |
+|---|---|
+| Text, team, story, HRDC, press, contact details | `index.html` |
+| Colors, fonts, layout, animations | `assets/style.css`. Colors are defined once at the top: the **palette**, the **roles** that use it, and the **tones** (orange = brand, red = YouTube, green = community/HRDC, gold = press). |
+| Interactive behavior (player, rows, counters) | `assets/main.js` |
+| Images | `assets/img/` |
+| Which YouTube channels are shown | `CHANNELS` in `tools/update_youtube.py` |
 
-Once deployed, GitHub does this automatically every 3 hours (see below), so you rarely need to run it.
-It rewrites `assets/data/youtube.js` and channel avatars. If YouTube can't be reached,
-the old data is kept. If that file is ever missing, the site falls back to built-in data.
-To add or remove a channel, edit the `CHANNELS` list at the top of the script.
+To refresh the stored YouTube data by hand: `python3 tools/update_youtube.py`.
 
-## Edit content
+---
 
-- Text, team, HRDC, contact details: `index.html`
-- Colours and layout: `assets/style.css`. All colours are set at the top of the file:
-  the **palette** (raw brand colours), the **roles** that use them (`--bg`, `--fg`, `--accent-text`…),
-  and the **themes** (hero photo, HRDC band) that re-map those roles. Change a colour there and it updates site-wide.
-- Images: `assets/img/`
+## Domain setup (already done, for reference)
 
-## Deploy (GitHub Pages)
+GoDaddy → myvillageshow.com → DNS (nameservers: GoDaddy default):
 
-The site is hosted free on GitHub Pages; the domain stays registered at GoDaddy.
-`.github/workflows/deploy.yml` publishes the site on every push to `main`, and every 3 hours it
-refreshes the YouTube data, commits it, and republishes — no computer needs to be on.
-Run it by hand any time from the repo's **Actions** tab → *Update YouTube data & deploy* → *Run workflow*.
+| Type | Name | Value |
+|---|---|---|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| CNAME | www | sriramsrikanth05-hash.github.io |
 
-Only `index.html`, `assets/` and `CNAME` are published; `tools/` and this README are not.
+GitHub → repository **Settings → Pages**: Source = *GitHub Actions*, custom domain = `myvillageshow.com`, **Enforce HTTPS** on.
 
-### One-time setup
-
-1. Push this folder to a GitHub repository (branch `main`).
-2. Repo → **Settings → Pages** → *Build and deployment* → Source: **GitHub Actions**.
-3. GoDaddy → **Domain → DNS** for myvillageshow.com:
-   - Remove the existing `A` record(s) for `@` (they point to the GoDaddy Website Builder),
-     and turn off domain forwarding if it is on.
-   - Add four `A` records for `@`: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - Set `CNAME` for `www` → `<your-github-username>.github.io`
-4. Repo → **Settings → Pages** → Custom domain: `myvillageshow.com` → after the DNS check passes, tick **Enforce HTTPS**.
+Don't change **myvillageshow.in**. It runs the old Wix site and the Google Workspace email (srikanth@myvillageshow.in).
