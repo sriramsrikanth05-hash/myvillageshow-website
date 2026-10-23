@@ -56,3 +56,23 @@ jobs:
           path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # GitHub Pages allows one custom domain per repository, so the same build is also pushed to
+      # the myvillageshow-in repository, which serves it on myvillageshow.in. Only the CNAME differs.
+      # The push replaces the mirror's history with a single commit, so it stays small.
+      - name: Publish the same site to myvillageshow.in
+        env:
+          MIRROR_DEPLOY_KEY: ${{ secrets.MIRROR_DEPLOY_KEY }}
+        run: |
+          cp -R _site _mirror
+          echo "myvillageshow.in" > _mirror/CNAME
+          touch _mirror/.nojekyll
+          install -m 600 /dev/null ~/mirror_key
+          echo "$MIRROR_DEPLOY_KEY" > ~/mirror_key
+          export GIT_SSH_COMMAND="ssh -i ~/mirror_key -o StrictHostKeyChecking=accept-new"
+          cd _mirror
+          git init -q -b main
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Publish ${{ github.sha }} (run ${{ github.run_id }})"
+          git push -q -f git@github.com:sriramsrikanth05-hash/myvillageshow-in.git main

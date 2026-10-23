@@ -142,4 +142,26 @@ GoDaddy → myvillageshow.com → DNS (nameservers: GoDaddy default):
 
 GitHub → repository **Settings → Pages**: Source = *GitHub Actions*, custom domain = `myvillageshow.com`, **Enforce HTTPS** on.
 
-Don't change **myvillageshow.in**. It runs the old Wix site and the Google Workspace email (srikanth@myvillageshow.in).
+### myvillageshow.in (mirror)
+
+myvillageshow.in shows the same site. GitHub Pages allows only one custom domain per repository, so the last step of the workflow pushes the same build to [`myvillageshow-in`](https://github.com/sriramsrikanth05-hash/myvillageshow-in), with `CNAME` set to `myvillageshow.in`. Both domains update together: on every merge, every 3 hours, and on **Run workflow**. Never edit `myvillageshow-in` by hand. Each run overwrites it.
+
+- The push uses the `MIRROR_DEPLOY_KEY` secret in this repository. Its public half is a deploy key with write access on `myvillageshow-in`.
+- The page's canonical link points to `https://myvillageshow.com/`, so Google treats .com as the main address and doesn't count .in as duplicate content.
+- `myvillageshow-in` → **Settings → Pages**: Source = *Deploy from a branch* (`main`, `/`), custom domain = `myvillageshow.in`, **Enforce HTTPS** on.
+
+The domain is registered at GoDaddy. Its DNS must keep the Google Workspace email records (MX and the `google-site-verification` TXT) for srikanth@myvillageshow.in:
+
+| Type | Name | Value |
+|---|---|---|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| CNAME | www | sriramsrikanth05-hash.github.io |
+| MX | @ | 10 aspmx.l.google.com |
+| MX | @ | 20 alt1.aspmx.l.google.com |
+| MX | @ | 30 alt2.aspmx.l.google.com |
+| MX | @ | 40 alt3.aspmx.l.google.com |
+| MX | @ | 50 alt4.aspmx.l.google.com |
+| TXT | @ | google-site-verification=Rmc-7bpP7ZZv8s_P-s3HEzFOAFKK7cRQnxXGdLP-w-4 |
